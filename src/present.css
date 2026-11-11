@@ -101,3 +101,7 @@
 .phase-head:active { opacity: .6; }
 .phase-head > span:last-child { display: inline-flex; align-items: center; }
 .phase-now { margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: var(--sage-50); color: var(--sage-800); font-size: 13px; font-weight: 500; vertical-align: middle; letter-spacing: 0; }
+
+/* Reflect cadence groups (2026-11-11) */
+.reflect-group { display: flex; flex-direction: column; gap: 8px; }
+.reflect-group-label { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); display: flex; align-items: center; gap: 8px; }

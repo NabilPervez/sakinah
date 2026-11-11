@@ -94,7 +94,17 @@ export interface QuickReframe {
   date: string;
 }
 
+/** Reflect › Nightly gratitude: one row per night. */
+export interface GratitudeNight {
+  id?: number;
+  date: string;
+  items: string[]; // up to 3
+  why: string; // why one of them mattered
+  createdAt: number;
+}
+
 class SerenityDB extends Dexie {
+  gratitudes!: Table<GratitudeNight>;
   checklistDays!: Table<ChecklistDay>;
   checkIns!: Table<CheckIn>;
   reframes!: Table<Reframe>;
@@ -130,6 +140,10 @@ class SerenityDB extends Dexie {
       distractionResets: '++id, createdAt, date',
       judgments: '++id, createdAt, date, tag',
       quickReframes: '++id, createdAt, date',
+    });
+    // v4 — additive: nightly gratitude journal.
+    this.version(4).stores({
+      gratitudes: '++id, &date',
     });
   }
 }
@@ -191,4 +205,14 @@ export async function savePillarWeek(w: Omit<PillarWeek, 'id'>): Promise<void> {
   const existing = await getPillarWeek(w.weekStart);
   if (existing?.id) await db.pillarWeeks.update(existing.id, w);
   else await db.pillarWeeks.add(w);
+}
+
+// ── Helpers: Gratitude ──────────────────────────────────
+
+export const getGratitudeNight = (date: string) => db.gratitudes.where('date').equals(date).first();
+export const getAllGratitudeNights = () => db.gratitudes.orderBy('date').reverse().toArray();
+export async function saveGratitudeNight(n: Omit<GratitudeNight, 'id'>): Promise<void> {
+  const existing = await getGratitudeNight(n.date);
+  if (existing?.id) await db.gratitudes.update(existing.id, n);
+  else await db.gratitudes.add(n);
 }

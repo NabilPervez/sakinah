@@ -42,7 +42,7 @@ export default function PillarsPage() {
       <TopBar title="Four Pillars" icon="foundation" />
       <div className="story-page">
         <Link to="/reflect" className="back-link"><span className="material-symbols-outlined">arrow_back</span>Reflect</Link>
-        <p className="story-lead">Week of {weekStart}. Write a little or a lot — any entry counts.</p>
+        <p className="story-lead">{new Date().getDay() === 5 ? 'It\u2019s Friday — close out the week.' : 'Your Friday reflection. Write it any day if Friday slips.'} Week of {weekStart}. Any entry counts.</p>
 
         <div className="pillar-grid">
           {PILLARS.map((p) => (

@@ -11,6 +11,7 @@ import LedgerPage from './pages/story/LedgerPage';
 import PillarsPage from './pages/story/PillarsPage';
 import PracticePage from './pages/present/PracticePage';
 import QuickReframePage from './pages/story/QuickReframePage';
+import GratitudePage from './pages/story/GratitudePage';
 import RemindersPage from './pages/RemindersPage';
 import ReminderEngine from './components/ReminderEngine';
 import UpdatePrompt from './components/UpdatePrompt';
@@ -57,6 +58,7 @@ export default function App() {
           <Route path="/reflect" element={<PageTransition><StoryHubPage /></PageTransition>} />
           <Route path="/reflect/quick" element={<PageTransition><QuickReframePage /></PageTransition>} />
           <Route path="/reflect/reframe" element={<PageTransition><ReframePage /></PageTransition>} />
+          <Route path="/reflect/gratitude" element={<PageTransition><GratitudePage /></PageTransition>} />
           <Route path="/reflect/ledger" element={<PageTransition><LedgerPage /></PageTransition>} />
           <Route path="/reflect/pillars" element={<PageTransition><PillarsPage /></PageTransition>} />
           <Route path="/progress" element={<PageTransition><AnalyticsPage /></PageTransition>} />
