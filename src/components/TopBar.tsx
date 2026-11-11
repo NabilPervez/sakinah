@@ -19,6 +19,11 @@ export default function TopBar({ title, icon, right }: TopBarProps) {
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         {right}
+        {pathname !== '/reminders' && (
+          <Link to="/reminders" className="topbar-bell" aria-label="Reminders and notifications">
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }} aria-hidden="true">notifications</span>
+          </Link>
+        )}
         {pathname !== '/sos' && (
           <Link to="/sos" className="sos-link" aria-label="SOS: emergency reset">
             <span className="material-symbols-outlined" style={{ fontSize: '16px' }} aria-hidden="true">emergency</span>SOS

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import TopBar from '../components/TopBar';
 import { Toast } from '../components/Toast';
 import { useToast } from '../hooks/useToast';
@@ -32,8 +32,10 @@ export default function ChecklistPage() {
   const [completed, setCompleted] = useState<string[]>([]);
   const [dayId, setDayId] = useState<number | undefined>(undefined);
   const [expandedTaskId, setExpandedTaskId] = useState<string | null>(null);
-  const [nowPhase] = useState<Phase>(currentPhase);
-  const [openPhases, setOpenPhases] = useState<Phase[]>(() => [currentPhase()]);
+  const [params] = useSearchParams();
+  const linked = params.get('phase') as Phase | null; // from a check-in notification
+  const [nowPhase] = useState<Phase>(() => (linked && PHASES.includes(linked) ? linked : currentPhase()));
+  const [openPhases, setOpenPhases] = useState<Phase[]>(() => [linked && PHASES.includes(linked) ? linked : currentPhase()]);
   const [checkIn, setCheckIn] = useState(false);
   const orderedPhases = [nowPhase, ...PHASES.filter((p) => p !== nowPhase)];
   const togglePhase = (p: Phase) => setOpenPhases((o) => (o.includes(p) ? o.filter((x) => x !== p) : [...o, p]));
@@ -133,7 +135,7 @@ export default function ChecklistPage() {
                   <span className="material-symbols-outlined">{meta.icon}</span>
                   <div>
                     <h3 className="section-title" style={{ marginBottom: 0 }}>
-                      {meta.label}{phase === nowPhase && <span className="phase-now">Now</span>}
+                      {meta.label}{phase === currentPhase() && <span className="phase-now">Now</span>}
                     </h3>
                     <p style={{ fontSize: '13px', color: 'var(--color-on-surface-variant)' }}>{meta.subtitle}</p>
                   </div>

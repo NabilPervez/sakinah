@@ -11,6 +11,9 @@ import LedgerPage from './pages/story/LedgerPage';
 import PillarsPage from './pages/story/PillarsPage';
 import PracticePage from './pages/present/PracticePage';
 import QuickReframePage from './pages/story/QuickReframePage';
+import RemindersPage from './pages/RemindersPage';
+import ReminderEngine from './components/ReminderEngine';
+import './reminders.css';
 import './story.css';
 import { initGlobalButtonSounds } from './utils/audio';
 
@@ -43,6 +46,7 @@ export default function App() {
 
   return (
     <AppShell>
+      <ReminderEngine />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Navigate to="/today" replace />} />
@@ -54,6 +58,7 @@ export default function App() {
           <Route path="/reflect/ledger" element={<PageTransition><LedgerPage /></PageTransition>} />
           <Route path="/reflect/pillars" element={<PageTransition><PillarsPage /></PageTransition>} />
           <Route path="/progress" element={<PageTransition><AnalyticsPage /></PageTransition>} />
+          <Route path="/reminders" element={<PageTransition><RemindersPage /></PageTransition>} />
           <Route path="/sos" element={<PageTransition><SosPage /></PageTransition>} />
           {/* Old routes → new IA (2026-11-03) */}
           <Route path="/checklist" element={<Navigate to="/today" replace />} />

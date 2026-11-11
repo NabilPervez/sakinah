@@ -1,0 +1,68 @@
+/* ── Reminders / notifications (2026-11-11) ───────────── */
+.topbar-bell {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 999px;
+  color: var(--color-on-surface-variant); text-decoration: none;
+}
+.topbar-bell:hover { background: var(--color-surface-container-high); color: var(--color-primary); }
+
+.rem-page { display: flex; flex-direction: column; gap: 1rem; padding-bottom: 6rem; }
+.rem-section { padding: 1.25rem; }
+.rem-h { font-size: 1rem; font-weight: 600; margin: 0 0 0.75rem; }
+.rem-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0.5rem 0; }
+.rem-row-inline { display: flex; align-items: center; gap: 8px; }
+.rem-label { font-weight: 500; color: var(--color-on-surface); }
+.rem-sub { font-size: 0.8125rem; color: var(--color-on-surface-variant); margin: 2px 0 0; }
+.rem-note { font-size: 0.75rem; color: var(--color-on-surface-variant); margin: 12px 0 0; line-height: 1.5; }
+.rem-routine, .rem-item { border-top: 1px solid var(--hairline); padding: 0.25rem 0 0.5rem; }
+.rem-routine:first-of-type { border-top: 0; }
+.rem-input {
+  font: inherit; font-size: 0.9rem; padding: 0.5rem 0.65rem; border-radius: 10px;
+  border: 1px solid var(--hairline); background: var(--paper); color: var(--color-on-surface);
+}
+.rem-input:focus { outline: 2px solid var(--sage-200); border-color: var(--sage-400); }
+.rem-mini { padding: 0.35rem !important; min-width: 0; }
+
+.rem-switch {
+  position: relative; width: 44px; height: 26px; flex: none; border-radius: 999px; border: 0;
+  background: #d9d9d9; cursor: pointer; transition: background 0.2s;
+}
+.rem-switch span {
+  position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); transition: transform 0.2s cubic-bezier(0.16,1,0.3,1);
+}
+.rem-switch.on { background: var(--color-primary); }
+.rem-switch.on span { transform: translateX(18px); }
+
+.rem-add { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--hairline); padding-top: 1rem; margin-top: 0.5rem; }
+.rem-seg { display: inline-flex; background: var(--paper-2); border-radius: 999px; padding: 3px; align-self: flex-start; }
+.rem-seg button { border: 0; background: transparent; padding: 0.4rem 1rem; border-radius: 999px; font: inherit; font-size: 0.85rem; cursor: pointer; color: var(--color-on-surface-variant); }
+.rem-seg button.on { background: var(--paper); color: var(--color-on-surface); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.rem-days { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.rem-days button {
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--hairline);
+  background: var(--paper); font: inherit; font-size: 0.8rem; cursor: pointer; color: var(--color-on-surface-variant);
+}
+.rem-days button.on { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+
+/* In-app prompt */
+.rem-overlay {
+  position: fixed; inset: 0; z-index: 300; display: flex; align-items: flex-end; justify-content: center;
+  background: rgba(17,17,17,0.35); backdrop-filter: blur(4px); padding: 1rem;
+}
+@media (min-width: 768px) { .rem-overlay { align-items: center; } }
+.rem-overlay.alarm { background: rgba(36,68,58,0.85); align-items: center; }
+.rem-card {
+  width: 100%; max-width: 420px; background: var(--paper); border-radius: 24px; padding: 1.75rem 1.5rem 1.25rem;
+  text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+.rem-icon { font-size: 40px !important; color: var(--color-primary); }
+.rem-overlay.alarm .rem-icon { animation: rem-ring 1s ease-in-out infinite; }
+@keyframes rem-ring { 0%,100% { transform: rotate(0); } 20% { transform: rotate(-14deg); } 40% { transform: rotate(14deg); } 60% { transform: rotate(-8deg); } }
+.rem-eyebrow { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-on-surface-variant); margin-top: 6px; }
+.rem-title { font-size: 1.25rem; font-weight: 600; margin: 4px 0 6px; }
+.rem-body { color: var(--color-on-surface-variant); margin: 0 0 14px; }
+.rem-progress { height: 6px; border-radius: 999px; background: var(--sage-50); overflow: hidden; margin: 0 0 16px; }
+.rem-progress > div { height: 100%; background: var(--color-primary); border-radius: 999px; transition: width 0.4s; }
+.rem-actions { display: flex; flex-direction: column; gap: 8px; }
+@media (prefers-reduced-motion: reduce) { .rem-overlay.alarm .rem-icon { animation: none; } }

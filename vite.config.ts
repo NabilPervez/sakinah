@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      includeAssets: ['sw-notify.js', 'favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'Serenity v2 - Daily Action Plan',
         short_name: 'Serenity',
@@ -21,6 +21,7 @@ export default defineConfig({
         shortcuts: [
           { name: 'Back to it', short_name: 'Back to it', description: 'Start a 5-minute distraction reset', url: '/practice?reset=1' },
           { name: 'SOS', short_name: 'SOS', url: '/sos' },
+          { name: 'Reminders', short_name: 'Reminders', url: '/reminders' },
         ],
         icons: [
           {
@@ -42,6 +43,7 @@ export default defineConfig({
         ],
       },
       workbox: {
+        importScripts: ['sw-notify.js'],
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
         runtimeCaching: [
           {
