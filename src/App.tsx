@@ -13,6 +13,7 @@ import PracticePage from './pages/present/PracticePage';
 import QuickReframePage from './pages/story/QuickReframePage';
 import RemindersPage from './pages/RemindersPage';
 import ReminderEngine from './components/ReminderEngine';
+import UpdatePrompt from './components/UpdatePrompt';
 import './reminders.css';
 import './story.css';
 import { initGlobalButtonSounds } from './utils/audio';
@@ -47,6 +48,7 @@ export default function App() {
   return (
     <AppShell>
       <ReminderEngine />
+      <UpdatePrompt />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Navigate to="/today" replace />} />
