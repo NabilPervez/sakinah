@@ -12,6 +12,8 @@ import PillarsPage from './pages/story/PillarsPage';
 import PracticePage from './pages/present/PracticePage';
 import QuickReframePage from './pages/story/QuickReframePage';
 import GratitudePage from './pages/story/GratitudePage';
+import SettingsPage from './pages/SettingsPage';
+import Onboarding from './components/Onboarding';
 import RemindersPage from './pages/RemindersPage';
 import ReminderEngine from './components/ReminderEngine';
 import UpdatePrompt from './components/UpdatePrompt';
@@ -50,6 +52,7 @@ export default function App() {
     <AppShell>
       <ReminderEngine />
       <UpdatePrompt />
+      <Onboarding />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Navigate to="/today" replace />} />
@@ -62,6 +65,7 @@ export default function App() {
           <Route path="/reflect/ledger" element={<PageTransition><LedgerPage /></PageTransition>} />
           <Route path="/reflect/pillars" element={<PageTransition><PillarsPage /></PageTransition>} />
           <Route path="/progress" element={<PageTransition><AnalyticsPage /></PageTransition>} />
+          <Route path="/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
           <Route path="/reminders" element={<PageTransition><RemindersPage /></PageTransition>} />
           <Route path="/sos" element={<PageTransition><SosPage /></PageTransition>} />
           {/* Old routes → new IA (2026-11-03) */}

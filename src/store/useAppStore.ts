@@ -8,6 +8,9 @@ interface AppState {
   favoriteCopingSkillIds: string[];
   currentStreak: number;
   lastOpenedDate: string; // YYYY-MM-DD
+  /** First-run onboarding finished (2026-11-11). */
+  onboarded: boolean;
+  setOnboarded: (v: boolean) => void;
 
   toggleFavoriteAffirmation: (id: string) => void;
   toggleFavoriteCopingSkill: (id: string) => void;
@@ -29,6 +32,8 @@ export const useAppStore = create<AppState>()(
       favoriteCopingSkillIds: ['exercise', 'box_breathing', 'journal', 'humor', 'spirituality'],
       currentStreak: 0,
       lastOpenedDate: '',
+      onboarded: false,
+      setOnboarded: (v) => set({ onboarded: v }),
 
       toggleFavoriteAffirmation: (id) => {
         const { favoriteAffirmationIds } = get();

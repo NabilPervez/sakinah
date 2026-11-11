@@ -24,6 +24,11 @@ export default function TopBar({ title, icon, right }: TopBarProps) {
             <span className="material-symbols-outlined" style={{ fontSize: '20px' }} aria-hidden="true">notifications</span>
           </Link>
         )}
+        {pathname !== '/settings' && (
+          <Link to="/settings" className="topbar-bell" aria-label="Settings">
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }} aria-hidden="true">settings</span>
+          </Link>
+        )}
         {pathname !== '/sos' && (
           <Link to="/sos" className="sos-link" aria-label="SOS: emergency reset">
             <span className="material-symbols-outlined" style={{ fontSize: '16px' }} aria-hidden="true">emergency</span>SOS
