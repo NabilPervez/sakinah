@@ -69,17 +69,17 @@
 
 /* ── Update available pill (2026-11-11) ─────────────── */
 .update-pill {
-  position: fixed; left: 50%; transform: translateX(-50%); z-index: 250;
+  position: fixed; left: 50%; transform: translateX(-50%); z-index: 1000;
   bottom: calc(76px + env(safe-area-inset-bottom)); /* clears mobile bottom nav */
   display: flex; align-items: center; gap: 10px; padding: 8px 8px 8px 16px;
   background: var(--ink); color: #fff; border-radius: 999px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-width: calc(100vw - 24px); white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: max-content; max-width: calc(100vw - 24px); flex-wrap: wrap; justify-content: center; pointer-events: auto;
 }
 @media (min-width: 768px) { .update-pill { bottom: 24px; } }
 .update-text { font-size: 0.875rem; font-weight: 500; }
 .update-btn {
   border: 0; border-radius: 999px; padding: 8px 16px; font: inherit; font-size: 0.875rem; font-weight: 600;
-  background: var(--sage-200); color: var(--sage-800); cursor: pointer;
+  background: var(--sage-200); color: var(--sage-800); cursor: pointer; min-height: 40px; flex-shrink: 0;
 }
 .update-x { border: 0; background: transparent; color: #fff; opacity: 0.7; cursor: pointer; display: inline-flex; padding: 4px; }
 

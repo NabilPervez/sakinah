@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import TopBar from '../components/TopBar';
 import { Toast } from '../components/Toast';
 import { useToast } from '../hooks/useToast';
+import { applyUpdate, checkForUpdate } from '../utils/appUpdate';
 import { useAppStore } from '../store/useAppStore';
 import { tableCounts, exportJSON, exportCSV, importBackup, clearAllData, storageEstimate, requestPersistence } from '../data/backup';
 
@@ -46,12 +47,28 @@ export default function SettingsPage() {
     setTimeout(() => window.location.assign('/today'), 1000);
   };
 
+  const [upd, setUpd] = useState<'idle' | 'checking' | 'ready' | 'latest'>('idle');
+  const onCheck = async () => { setUpd('checking'); setUpd((await checkForUpdate()) ? 'ready' : 'latest'); };
+
   return (
     <>
       <Toast message={toast.message} show={toast.show} />
       <TopBar title="Settings" icon="settings" />
       <div className="page-content rem-page">
         {/* ── Your data ── */}
+        <section className="card rem-section">
+          <h3 className="rem-h">App version</h3>
+          <p className="rem-sub" style={{ marginBottom: 12 }}>
+            {upd === 'ready' ? 'A new version is ready.' : upd === 'latest' ? 'You’re on the latest version.' : upd === 'checking' ? 'Checking…' : 'Get the newest version of Sakinah.'}
+          </p>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {upd === 'ready'
+              ? <button className="btn-primary" onClick={applyUpdate}>Update now</button>
+              : <button className="btn-ghost" onClick={onCheck} disabled={upd === 'checking'}>Check for updates</button>}
+            <button className="btn-ghost" onClick={applyUpdate}>Reload app</button>
+          </div>
+        </section>
+
         <section className="card rem-section">
           <h3 className="rem-h">Your data</h3>
           <p className="rem-sub" style={{ marginBottom: 10 }}>

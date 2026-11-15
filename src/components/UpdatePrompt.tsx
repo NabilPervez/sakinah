@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
+import { applyUpdate } from '../utils/appUpdate';
 
 const CHECK_EVERY_MS = 30 * 60_000;
 
@@ -28,7 +29,7 @@ export default function UpdatePrompt() {
     <div className="update-pill animate-fade-up" role="status" aria-live="polite">
       <span className="material-symbols-outlined" aria-hidden="true" style={{ fontSize: 20 }}>system_update</span>
       <span className="update-text">A new version is ready</span>
-      <button className="update-btn" onClick={() => updateServiceWorker(true)}>Update</button>
+      <button className="update-btn" onClick={() => { updateServiceWorker(true).catch(() => {}); applyUpdate(); }}>Update now</button>
       <button className="update-x" aria-label="Later" onClick={() => setNeedRefresh(false)}>
         <span className="material-symbols-outlined" style={{ fontSize: 18 }}>close</span>
       </button>
