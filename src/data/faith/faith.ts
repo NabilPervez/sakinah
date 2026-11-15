@@ -107,16 +107,38 @@ export const SHIFTS: Shift[] = [
 ];
 
 /* ── Qur'an plan (gameplan Part II §4) ─────────────────────────────── */
-export interface Passage { id: string; title: string; ref: string; why: string; url: string }
+/** seg = in-app listening ranges, played in order. */
+export interface Passage { id: string; title: string; ref: string; why: string; url: string; segs: { s: number; a: number; b: number }[] }
 export const PASSAGES: Record<string, Passage> = {
-  duha: { id: 'duha', title: 'Ad-Duha & Ash-Sharh', ref: 'Qur’an 93 · 94', why: 'Directly counters feelings of abandonment and cognitive overload by reminding the believer of past guidance and promising that ease accompanies every hardship.', url: 'https://quran.com/93' },
-  yusuf: { id: 'yusuf', title: 'Yusuf', ref: 'Qur’an 12:83–100', why: 'Illustrates how severe disruptions (betrayal, separation, imprisonment) serve as the precise vehicles through which Allah’s subtle care (Al-Latif) establishes long-term good.', url: 'https://quran.com/12/83-100' },
-  talaq: { id: 'talaq', title: 'At-Talaq 1–7 & Al-Baqarah 286', ref: 'Qur’an 65:1–7 · 2:286', why: '“Whoever relies upon Allah, He is sufficient for him” (65:3) and “Allah does not charge a soul except with that within its capacity” (2:286). Releasing financial and future fears.', url: 'https://quran.com/65/1-7' },
-  mulk: { id: 'mulk', title: 'Al-Mulk', ref: 'Qur’an 67', why: 'Grounding in Allah’s sovereignty and creation.', url: 'https://quran.com/67' },
+  duha: { id: 'duha', title: 'Ad-Duha & Ash-Sharh', ref: 'Qur’an 93 · 94', why: 'Directly counters feelings of abandonment and cognitive overload by reminding the believer of past guidance and promising that ease accompanies every hardship.', url: 'https://quran.com/93', segs: [{ s: 93, a: 1, b: 11 }, { s: 94, a: 1, b: 8 }] },
+  yusuf: { id: 'yusuf', title: 'Yusuf', ref: 'Qur’an 12:83–100', why: 'Illustrates how severe disruptions (betrayal, separation, imprisonment) serve as the precise vehicles through which Allah’s subtle care (Al-Latif) establishes long-term good.', url: 'https://quran.com/12/83-100', segs: [{ s: 12, a: 83, b: 100 }] },
+  talaq: { id: 'talaq', title: 'At-Talaq 1–7 & Al-Baqarah 286', ref: 'Qur’an 65:1–7 · 2:286', why: '“Whoever relies upon Allah, He is sufficient for him” (65:3) and “Allah does not charge a soul except with that within its capacity” (2:286). Releasing financial and future fears.', url: 'https://quran.com/65/1-7', segs: [{ s: 65, a: 1, b: 7 }, { s: 2, a: 286, b: 286 }] },
+  mulk: { id: 'mulk', title: 'Al-Mulk', ref: 'Qur’an 67', why: 'Grounding in Allah’s sovereignty and creation.', url: 'https://quran.com/67', segs: [{ s: 67, a: 1, b: 30 }] },
 };
 /** Weekly schedule, index = Date.getDay() (0 Sun). */
 export const QURAN_WEEK: string[] = ['mulk', 'duha', 'yusuf', 'talaq', 'duha', 'yusuf', 'talaq'];
 export const QURAN_FOCUS: Record<string, string> = { duha: 'Relief from internal pressure', yusuf: 'Trusting Allah’s long-term plan across family challenges', talaq: 'Releasing financial and future fears', mulk: 'Grounding in Allah’s sovereignty and creation' };
+
+/* ── Listening: why and how (Listen page) ─────────────────────────── */
+export const LISTEN_WHY: Block[] = [
+  { kind: 'quran', arabic: 'وَإِذَا قُرِئَ الْقُرْآنُ فَاسْتَمِعُوا لَهُ وَأَنصِتُوا لَعَلَّكُمْ تُرْحَمُونَ', text: 'When the Qur’an is recited, listen to it and be silent, so that you may receive mercy.', source: 'Qur’an 7:204' },
+  { kind: 'quran', arabic: 'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ', text: 'Truly, in the remembrance of Allah do hearts find rest.', source: 'Qur’an 13:28' },
+  { kind: 'quran', arabic: 'وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ', text: 'We send down of the Qur’an that which is healing and mercy for the believers.', source: 'Qur’an 17:82' },
+  { kind: 'hadith', text: 'No people gather in one of the houses of Allah, reciting the Book of Allah and studying it together, except that tranquility (sakinah) descends upon them, mercy covers them, the angels surround them, and Allah mentions them to those near Him.', source: 'Sahih Muslim 2699 (Abu Hurayrah)' },
+  { kind: 'hadith', text: 'A man was reciting Surah al-Kahf when a cloud came down over him. He told the Prophet ﷺ, who said: “That was the sakinah, which descended because of the Qur’an.” This app is named for it.', source: 'Sahih al-Bukhari 5011; Sahih Muslim 795 (al-Bara’ ibn ‘Azib)' },
+  { kind: 'hadith', text: 'The Prophet ﷺ asked Ibn Mas’ud to recite to him. Ibn Mas’ud said, “Shall I recite to you when it was revealed to you?” He said, “I love to hear it from someone else.” When he reached 4:41, the Prophet’s eyes filled with tears.', source: 'Sahih al-Bukhari 5050; Sahih Muslim 800' },
+  { kind: 'hadith', text: 'The Prophet ﷺ stood the whole night repeating a single verse until dawn: “If You punish them, they are Your servants; and if You forgive them, You are the Mighty, the Wise.” (5:118)', source: 'Sunan an-Nasa’i 1010; Sunan Ibn Majah 1350 (hasan)' },
+  { kind: 'scholar', text: 'Al-Ghazali lists the inner etiquette of the Qur’an: understand its greatness, be present in heart, reflect (tadabbur), take each verse as addressed to you personally, and let it move you — rather than letting the sound pass while the mind wanders.', source: 'Ihya’ ‘Ulum al-Din, Kitab Adab Tilawat al-Qur’an' },
+  { kind: 'note', text: 'Attentive listening brings the mercy promised in 7:204. Reciting it yourself also earns ten rewards for every letter (Jami at-Tirmidhi 2910, hasan sahih). So listen to settle the heart, and recite along when you can.', source: 'Qur’an 7:204; Jami at-Tirmidhi 2910' },
+];
+export const LISTEN_HOW: { step: string; why: string; source: string }[] = [
+  { step: 'Pause what you’re doing, or listen on a walk or commute with full attention.', why: 'Listening “and being silent” is the condition for the mercy in the verse.', source: 'Qur’an 7:204' },
+  { step: 'Follow the translation line by line.', why: 'The Book was sent down to be reflected on, not only heard.', source: 'Qur’an 38:29' },
+  { step: 'When a verse lands, repeat it.', why: 'The Prophet ﷺ repeated one verse through the night. Use the repeat setting.', source: 'Sunan an-Nasa’i 1010' },
+  { step: 'Hear it as addressed to you.', why: 'Al-Ghazali’s etiquette: take each verse personally — your fears, your family, your choices.', source: 'Ihya’, Kitab Adab Tilawat al-Qur’an' },
+  { step: 'End with one line in muhasabah.', why: 'What the verse asked of you becomes tomorrow’s intention.', source: 'Ihya’, Kitab al-Muraqabah wa al-Muhasabah' },
+];
+export const AUDIO_SOURCE = 'Text: Uthmani script (Tanzil) · Translation: Saheeh International · Transliteration and audio: Islamic Network (alquran.cloud), per-ayah recitation. Player ported from your quran-recitation app.';
 
 /* ── Weave-ins for existing practices (gameplan Part II §6) ────────── */
 export const NIYYAH = {

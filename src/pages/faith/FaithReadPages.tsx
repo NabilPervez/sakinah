@@ -37,7 +37,8 @@ export function QuranPage() {
           <p className="pr-lede">{p.why}</p>
           <SourceLine>{p.ref}</SourceLine>
           <div className="pr-actions">
-            <a className="qp-btn qp-btn-primary" href={p.url} target="_blank" rel="noreferrer"><span className="material-symbols-outlined" aria-hidden="true">play_arrow</span>Listen on quran.com</a>
+            <Link className="qp-btn qp-btn-primary" to={`/faith/listen?plan=${p.id}`}><span className="material-symbols-outlined" aria-hidden="true">play_arrow</span>Listen here</Link>
+            <a className="qp-btn qp-btn-ghost" href={p.url} target="_blank" rel="noreferrer">quran.com</a>
             <button className="qp-btn qp-btn-ghost" disabled={done} onClick={mark}>{done ? 'Listened today' : 'Mark listened'}</button>
           </div>
           {run > 1 && <p className="pr-hint">{run} days in a row.</p>}
@@ -49,14 +50,15 @@ export function QuranPage() {
               const x = PASSAGES[QURAN_WEEK[d]];
               return (
                 <div key={d} className={`pr-row${d === today ? ' open' : ''}`}>
-                  <div className="pr-row-head">
+                  <Link className="pr-row-head" to={`/faith/listen?plan=${x.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <span className="pr-row-n">{DAYS[d].slice(0, 3)}</span>
                     <span style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
                       <span className="pr-row-title">{x.title}</span>
                       <span className="pr-hint">{QURAN_FOCUS[x.id]}</span>
                     </span>
                     <span className="pr-row-meta">{x.ref.replace('Qur’an ', '')}</span>
-                  </div>
+                    <span className="material-symbols-outlined pr-row-chev" aria-hidden="true">play_circle</span>
+                  </Link>
                 </div>
               );
             })}

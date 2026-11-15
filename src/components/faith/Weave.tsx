@@ -41,7 +41,7 @@ export function TodayFaith() {
         <span className="material-symbols-outlined" aria-hidden="true">star</span>
         <span className="faith-strip-t"><strong>Ya {anchor.name.replace(/^(Al-|As-|Ar-)/, '')}</strong>{anchor.struggle}</span>
       </Link>
-      <Link to="/faith/quran">
+      <Link to={`/faith/listen?plan=${passage.id}`}>
         <span className="material-symbols-outlined" aria-hidden="true">menu_book</span>
         <span className="faith-strip-t"><strong>{passage.title}</strong>Today’s listening · {passage.ref}</span>
       </Link>

@@ -98,3 +98,28 @@
 .lg-b::before { background: var(--accent-300); }
 
 @media (prefers-reduced-motion: reduce) { .counter-ring { transition: none; } }
+
+/* Listen — in-app recitation (Nabil, 2026-11-15) */
+.listen-link { color: var(--accent-600); font-weight: 500; text-decoration: none; }
+.listen-controls { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+.listen-field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500; }
+.listen-field select { appearance: auto; }
+.listen-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.listen-player { margin: 8px 0 24px; }
+.listen-bar { position: sticky; top: 64px; z-index: 5; display: flex; align-items: center; gap: 8px; padding: 12px; background: rgba(255,255,255,0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--hairline); border-radius: var(--radius-md); }
+.listen-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--hairline); background: var(--paper); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
+.listen-btn.main { width: 52px; height: 52px; background: var(--accent-600); border-color: var(--accent-600); color: #fff; }
+.listen-btn:active { transform: scale(0.96); }
+.listen-btn:focus-visible { outline: 2px solid var(--accent-600); outline-offset: 3px; }
+.listen-pos { display: flex; flex-direction: column; min-width: 0; font-size: 13px; color: var(--ink-2); margin-left: 4px; }
+.listen-pos strong { font-size: 16px; font-weight: 500; color: var(--ink); }
+.listen-ayahs { list-style: none; margin: 16px 0 0; padding: 0; border-top: 1px solid var(--hairline); }
+.listen-ayahs li { border-bottom: 1px solid var(--hairline); }
+.listen-ayahs li.on { background: var(--accent-50); }
+.listen-ayah { display: flex; flex-direction: column; gap: 6px; width: 100%; padding: 16px 8px; background: none; border: 0; text-align: left; font: inherit; cursor: pointer; color: var(--ink); }
+.listen-n { font-size: 13px; font-weight: 500; color: var(--accent-600); }
+.listen-en { font-size: 16px; line-height: 1.6; color: var(--ink-2); }
+.listen-ayahs li.on .listen-en { color: var(--ink); }
+.listen-how { padding-left: 20px; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.listen-how li { display: flex; flex-direction: column; gap: 2px; font-size: 16px; }
+.listen-how li span { font-size: 14px; color: var(--ink-2); }

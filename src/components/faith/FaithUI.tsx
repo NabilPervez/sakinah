@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -25,8 +26,16 @@ export function Cite({ source, label = 'Source' }: { source: string; label?: str
 }
 
 /** Block-level citation line (always visible). */
+/** Any “Qur’an S:A(–B)” citation gets a Listen link that opens it in the in-app player (Nabil, 2026-11-15). */
+const QREF = /Qur[’']an (\d{1,3}):(\d{1,3})(?:[–-](\d{1,3}))?/;
 export function SourceLine({ children }: { children: React.ReactNode }) {
-  return <p className="src-line"><span className="material-symbols-outlined" aria-hidden="true">menu_book</span>{children}</p>;
+  const m = typeof children === 'string' ? children.match(QREF) : null;
+  return (
+    <p className="src-line">
+      <span className="material-symbols-outlined" aria-hidden="true">menu_book</span>
+      <span>{children}{m && <> · <Link className="listen-link" to={`/faith/listen?s=${m[1]}&a=${m[2]}&b=${m[3] ?? m[2]}`}>Listen</Link></>}</span>
+    </p>
+  );
 }
 
 /**

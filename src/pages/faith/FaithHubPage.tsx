@@ -15,6 +15,7 @@ const SECTIONS: { label: string; rows: Row[] }[] = [
   { label: 'Daily', rows: [
     { to: '/reflect/muhasabah', title: 'Muhasabah.', meta: '3 min', blurb: 'Morning intention, nightly review — al-Ghazali’s four stages.' },
     { to: '/faith/quran', title: 'Qur’an plan.', meta: '15 min', blurb: 'Today’s passage and why it fits.' },
+    { to: '/faith/listen', title: 'Listen.', meta: '114 surahs', blurb: 'Recitation with translation, repeat a verse, three reciters.' },
     { to: '/faith/names', title: 'Names of Allah.', meta: '99', blurb: 'Five anchor Names for your struggles, and all 99.' },
   ] },
   { label: 'Understand the why', rows: [
@@ -53,7 +54,7 @@ export default function FaithHubPage() {
             <span className="faith-tile-ar" dir="rtl" lang="ar">{name.arabic}</span>
             <span className="faith-tile-s">{name.transliteration} · {name.meaning}</span>
           </Link>
-          <Link to="/faith/quran" className="faith-tile">
+          <Link to={`/faith/listen?plan=${passage.id}`} className="faith-tile">
             <span className="faith-tile-k">Today’s Qur’an</span>
             <span className="faith-tile-v">{passage.title}</span>
             <span className="faith-tile-s">{passage.ref}</span>
