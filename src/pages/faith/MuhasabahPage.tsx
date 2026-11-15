@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
 import { Toast } from '../../components/Toast';
 import { useToast } from '../../hooks/useToast';
+import EditableField from '../../components/EditableField';
 import { Arabic, Cite, SourceLine, useRise } from '../../components/faith/FaithUI';
 import { getAllMuhasabah, getMuhasabah, saveMuhasabah, type MuhasabahDay } from '../../data/db';
 import { getTodayDateString } from '../../store/useAppStore';
@@ -24,12 +25,15 @@ export default function MuhasabahPage() {
   const ref = useRise<HTMLDivElement>([closed]);
 
   useEffect(() => { getMuhasabah(date).then((x) => x && setM(x)); getAllMuhasabah().then(setPast); }, [date]);
-  const set = (k: keyof MuhasabahDay) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setM({ ...m, [k]: e.target.value });
-  const save = async (close = false) => {
-    await saveMuhasabah({ ...m, createdAt: Date.now() });
+  // Each field saves on its own — fixes intention not saving after 4pm (button was hidden in the evening).
+  const saveField = (k: 'intention' | 'well' | 'slip' | 'release') => async (v: string) => {
+    const next = { ...m, [k]: v, createdAt: Date.now() };
+    setM(next);
+    await saveMuhasabah(next);
     setPast(await getAllMuhasabah());
-    if (close) { setClosed(true); window.scrollTo(0, 0); } else showToast('Intention set ✓');
+    showToast(k === 'intention' ? 'Intention saved ✓' : 'Saved ✓');
   };
+  const close = () => { setClosed(true); window.scrollTo(0, 0); };
   const run = streak(past.filter((p) => p.well || p.slip || p.release).map((p) => p.date));
 
   if (closed) return (
@@ -63,24 +67,19 @@ export default function MuhasabahPage() {
         </header>
 
         <section className={`card prompt-card${evening ? '' : ' focus'}`} data-rise>
-          <p className="flow-k">01 · Musharatah · morning</p>
-          <label htmlFor="int">One intention for today</label>
-          <input id="int" className="qp-input" value={m.intention} onChange={set('intention')} placeholder="Today I intend to…" />
-          <p className="pr-hint">It shows on Today as your muraqabah reminder. <Cite source="Muraqabah: Sahih Muslim 8 — worship as if you see Him" /></p>
-          {!evening && <button className="qp-btn qp-btn-primary" onClick={() => save(false)} disabled={!m.intention.trim()}>Set intention</button>}
+          <p className="flow-k">Step 1 · Morning intention</p>
+          <EditableField id="int" label="One intention for today" value={m.intention} placeholder="Today I intend to…" onSave={saveField('intention')} />
+          <p className="pr-hint">It shows on Today as your reminder. <Cite source="Muraqabah: Sahih Muslim 8 — worship as if you see Him" /></p>
         </section>
 
         <section className={`card prompt-card${evening ? ' focus' : ''}`} data-rise>
-          <p className="flow-k">03 · Muhasabah · night</p>
+          <p className="flow-k">Step 2 · Night review</p>
           {m.intention && <p className="pr-hint">This morning you intended: “{m.intention}”</p>}
-          <label htmlFor="well">What went well? <em>Alhamdulillah</em></label>
-          <textarea id="well" className="qp-input qp-textarea" value={m.well} onChange={set('well')} />
-          <label htmlFor="slip">Where did I slip — morally or with someone? <em>Astaghfirullah</em></label>
-          <input id="slip" className="qp-input" value={m.slip} onChange={set('slip')} placeholder="One thing. Not a list." />
+          <EditableField id="well" multiline label={<>What went well? <em>Alhamdulillah</em></>} value={m.well} onSave={saveField('well')} />
+          <EditableField id="slip" label={<>Where did I slip — morally or with someone? <em>Astaghfirullah</em></>} value={m.slip} placeholder="One thing. Not a list." onSave={saveField('slip')} />
           <p className="pr-hint">One entry only: perfectionism about non-moral things is waswas, not muhasabah. <Cite source="al-Ghazali, Ihya’ [Nadrat al-Na’im, al-Muqaddima p. 77]" /></p>
-          <label htmlFor="rel">What do I hand to Al-Wakil for tomorrow?</label>
-          <input id="rel" className="qp-input" value={m.release} onChange={set('release')} />
-          <button className="qp-btn qp-btn-primary" onClick={() => save(true)} disabled={!(m.well.trim() || m.slip.trim() || m.release.trim())}>Close the day</button>
+          <EditableField id="rel" label="What do I hand to Al-Wakil for tomorrow?" value={m.release} onSave={saveField('release')} />
+          <button className="qp-btn qp-btn-primary" onClick={close} disabled={!(m.well || m.slip || m.release)}>Close the day</button>
         </section>
 
         {past.length > 1 && (

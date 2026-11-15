@@ -27,58 +27,58 @@ export default function DuasPage() {
         </header>
 
         <section className="reflect-group" data-rise>
-          <h2 className="reflect-group-label">From the Sunnah</h2>
-          <div className="pr-spine">
-            {GAMEPLAN_DUAS.map((d, i) => (
-              <div key={d.id} className={`pr-row${open === d.id ? ' open' : ''}`}>
-                <button className="pr-row-head" aria-expanded={open === d.id} onClick={() => setOpen(open === d.id ? null : d.id)}>
-                  <span className="pr-row-n">0{i + 1}</span>
-                  <span className="pr-row-title">{d.title}</span>
-                  <span className="material-symbols-outlined pr-row-chev" aria-hidden="true">expand_more</span>
-                </button>
-                {open === d.id && (
-                  <div className="pr-row-body">
-                    <Arabic>{d.arabic}</Arabic>
-                    <p className="pr-row-title">{d.transliteration}</p>
-                    <p className="pr-lede">{d.translation}</p>
-                    <p className="pr-hint"><strong>When:</strong> {d.when}</p>
-                    <SourceLine>{d.source}</SourceLine>
-                    <Link className="qp-btn qp-btn-ghost" to={`/faith/dhikr?id=${d.id}`}>Count it</Link>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="reflect-group" data-rise>
           <h2 className="reflect-group-label">By what I feel</h2>
           <div className="qp-chips" role="group" aria-label="Needs">
             {NEEDS.map((n) => <button key={n} className={`qp-chip${n === need ? ' active' : ''}`} aria-pressed={n === need} onClick={() => setNeed(n)}>{n}</button>)}
           </div>
-          <p className="pr-hint" style={{ marginTop: 12 }}>{list.length} Names for “{need}”. These are composed du’as that call on a Name — not narrated texts.</p>
-          <div className="pr-spine" style={{ marginTop: 8 }}>
+          <p className="pr-hint" style={{ marginTop: 12 }}>{list.length} du’as for “{need}”. Composed du’as that call on a Name of Allah.</p>
+          <div style={{ marginTop: 8 }}>
             {list.map((d) => {
               const k = `n${d.id}`;
               return (
-                <div key={k} className={`pr-row${open === k ? ' open' : ''}`}>
-                  <button className="pr-row-head" aria-expanded={open === k} onClick={() => setOpen(open === k ? null : k)}>
-                    <span className="pr-row-title" style={{ flex: 1 }}>{d.name}</span>
-                    <span className="pr-row-meta">{d.meaning}</span>
-                    <span className="material-symbols-outlined pr-row-chev" aria-hidden="true">expand_more</span>
+                <div key={k} className="dua-card">
+                  <p className="pr-lede need-dua">{d.dua}</p>
+                  <button className="dua-more" aria-expanded={open === k} onClick={() => setOpen(open === k ? null : k)}>
+                    {open === k ? 'Hide' : `About ${d.name}`}
+                    <span className="material-symbols-outlined" style={{ fontSize: 16 }} aria-hidden="true">{open === k ? 'expand_less' : 'expand_more'}</span>
                   </button>
                   {open === k && (
-                    <div className="pr-row-body">
+                    <>
+                      <p className="dua-name">{d.name} · {d.meaning}</p>
                       {d.meaningBlocks.map((m, i) => <p key={i} className="pr-hint">{m}</p>)}
-                      <p className="pr-lede need-dua">{d.dua}</p>
                       <SourceLine>{NEED_DUA_NOTE.source}</SourceLine>
-                    </div>
+                    </>
                   )}
                 </div>
               );
             })}
           </div>
         </section>
+        <section className="reflect-group" data-rise>
+          <h2 className="reflect-group-label">From the Sunnah</h2>
+          <div>
+            {GAMEPLAN_DUAS.map((d) => (
+              <div key={d.id} className="dua-card">
+                <Arabic>{d.arabic}</Arabic>
+                <p className="pr-lede need-dua">{d.translation}</p>
+                <button className="dua-more" aria-expanded={open === d.id} onClick={() => setOpen(open === d.id ? null : d.id)}>
+                  {open === d.id ? 'Hide details' : 'When & source'}
+                  <span className="material-symbols-outlined" style={{ fontSize: 16 }} aria-hidden="true">{open === d.id ? 'expand_less' : 'expand_more'}</span>
+                </button>
+                {open === d.id && (
+                  <>
+                    <p className="pr-row-title" style={{ fontSize: 16 }}>{d.title}</p>
+                    <p className="pr-hint">{d.transliteration}</p>
+                    <p className="pr-hint"><strong>When:</strong> {d.when}</p>
+                    <SourceLine>{d.source}</SourceLine>
+                    <Link className="qp-btn qp-btn-ghost" to={`/faith/dhikr?id=${d.id}`}>Count it</Link>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
       </div>
     </>
   );

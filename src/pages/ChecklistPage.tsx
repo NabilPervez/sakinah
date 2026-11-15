@@ -69,6 +69,9 @@ export default function ChecklistPage() {
     if (isChecking) showToast('Nice work \u2713');
   };
 
+  const [skipped, setSkipped] = useState<string[]>([]);
+  const nextUp = orderedPhases.flatMap((p) => TASKS_BY_PHASE[p]).find((t) => !completed.includes(t.id) && !skipped.includes(t.id));
+
   const totalTasks = CHECKLIST_TASKS.length;
   const completedCount = completed.length;
   const progressPct = totalTasks > 0 ? Math.round((completedCount / totalTasks) * 100) : 0;
@@ -110,20 +113,19 @@ export default function ChecklistPage() {
 
         <TodayFaith />
 
-        <nav className="today-actions" aria-label="Quick actions">
-          <button className="today-action" onClick={() => setCheckIn(true)}>
-            <span className="material-symbols-outlined" aria-hidden="true">favorite</span>Check in
-          </button>
-          <Link className="today-action" to="/practice?open=breathe">
-            <span className="material-symbols-outlined" aria-hidden="true">air</span>Breathe
-          </Link>
-          <Link className="today-action" to="/practice?reset=1">
-            <span className="material-symbols-outlined" aria-hidden="true">alarm</span>Back to it
-          </Link>
-          <Link className="today-action" to="/practice">
-            <span className="material-symbols-outlined" aria-hidden="true">self_improvement</span>Be present
-          </Link>
-        </nav>
+        {nextUp && (
+          <section className="next-up animate-fade-up" aria-label="Next step">
+            <p className="flow-k">Next up · {PHASE_META[nextUp.phase as Phase]?.label ?? ''}</p>
+            <h2 className="next-up-title">{nextUp.title}</h2>
+            <p className="pr-hint">{nextUp.whatToDo}</p>
+            <div className="ef-actions">
+              <button className="qp-btn qp-btn-primary" onClick={() => toggleTask(nextUp.id)}>Done</button>
+              {nextUp.toolLink && <Link className="qp-btn qp-btn-ghost" to={nextUp.toolLink}>Start it</Link>}
+              <button className="qp-btn qp-btn-ghost" onClick={() => setSkipped([...skipped, nextUp.id])}>Later</button>
+            </div>
+          </section>
+        )}
+
 
         {orderedPhases.map((phase, phaseIdx) => {
           const tasks = TASKS_BY_PHASE[phase];
@@ -159,10 +161,8 @@ export default function ChecklistPage() {
                       className={`coping-card${checked ? ' checked' : ''}`}
                       style={{ flexDirection: 'column', alignItems: 'stretch', gap: 0, cursor: 'default' }}
                     >
-                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', cursor: 'pointer' }}
-                        onClick={() => setExpandedTaskId(expanded ? null : task.id)}
-                        role="button" tabIndex={0}
-                        onKeyDown={(e) => e.key === 'Enter' && setExpandedTaskId(expanded ? null : task.id)}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', cursor: 'pointer', minHeight: 48 }}
+                        onClick={() => toggleTask(task.id)}
                       >
                         <input
                           type="checkbox"
@@ -177,9 +177,10 @@ export default function ChecklistPage() {
                           <p className="coping-title" style={{ fontWeight: 600, color: 'var(--color-on-surface)', marginBottom: '0.125rem' }}>{task.title}</p>
                           <p style={{ fontSize: '13px', color: 'var(--color-outline)' }}>{task.frequency}</p>
                         </div>
-                        <span className="material-symbols-outlined" style={{ color: 'var(--color-outline)', fontSize: '18px', transform: expanded ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s var(--ease-standard)' }}>
-                          expand_more
-                        </span>
+                        <button className="btn-ghost rem-mini" aria-label={`How: ${task.title}`} aria-expanded={expanded}
+                          onClick={(e) => { e.stopPropagation(); setExpandedTaskId(expanded ? null : task.id); }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: 18 }}>{expanded ? 'expand_less' : 'info'}</span>
+                        </button>
                       </div>
 
                       {expanded && (
@@ -213,6 +214,21 @@ export default function ChecklistPage() {
             </section>
           );
         })}
+        <h3 className="section-title" style={{ marginTop: 24 }}>Need a moment?</h3>
+        <nav className="today-actions" aria-label="Quick actions">
+          <button className="today-action" onClick={() => setCheckIn(true)}>
+            <span className="material-symbols-outlined" aria-hidden="true">favorite</span>Check in
+          </button>
+          <Link className="today-action" to="/practice?open=breathe">
+            <span className="material-symbols-outlined" aria-hidden="true">air</span>Breathe
+          </Link>
+          <Link className="today-action" to="/practice?reset=1">
+            <span className="material-symbols-outlined" aria-hidden="true">alarm</span>Back to it
+          </Link>
+          <Link className="today-action" to="/practice">
+            <span className="material-symbols-outlined" aria-hidden="true">self_improvement</span>Be present
+          </Link>
+        </nav>
       </div>
 
       {checkIn && (

@@ -105,3 +105,8 @@
 /* Reflect cadence groups (2026-11-11) */
 .reflect-group { display: flex; flex-direction: column; gap: 8px; }
 .reflect-group-label { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); display: flex; align-items: center; gap: 8px; }
+
+/* Today › Next up — one clear step at a time */
+.next-up { border: 1px solid var(--hairline); border-radius: 16px; padding: 20px; margin: 16px 0 24px; display: flex; flex-direction: column; gap: 8px; }
+.next-up-title { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+.next-up .ef-actions { flex-wrap: wrap; margin-top: 4px; }
