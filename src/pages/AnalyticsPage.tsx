@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import '../faith.css';
 import { useEffect, useMemo, useState } from 'react';
 import {
   BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
@@ -13,7 +15,7 @@ import { getWeekStart } from '../data/storyContent';
 
 /** Progress — every data source in the app, each with a fitting chart (Nabil, 2026-11-11). */
 
-const C = { deep: '#24443a', mid: '#3f6f55', soft: '#6f9a80', pale: '#c4d6ca', warm: '#b08a5a', ink2: '#6b6b6b', grid: '#e7e7e7' };
+const C = { deep: '#1b2f52', mid: '#2e4f86', soft: '#5f7fb3', pale: '#c5d2e6', warm: '#b08a5a', ink2: '#6b6b6b', grid: '#e7e7e7' };
 const SERIES = [C.deep, C.soft, C.warm, C.pale, C.mid, C.ink2];
 const PHASES: Phase[] = ['morning', 'afternoon', 'evening'];
 const tip = { contentStyle: { background: '#fff', border: `1px solid ${C.grid}`, borderRadius: 8, fontSize: 13 } };
@@ -157,6 +159,13 @@ export default function AnalyticsPage() {
     <>
       <TopBar title="Progress" icon="monitoring" />
       <div className="page-content pg-page">
+        <Link to="/progress/signs" className="faith-strip" style={{ textDecoration: 'none' }}>
+          <span>
+            <span className="material-symbols-outlined" aria-hidden="true">trending_up</span>
+            <span className="faith-strip-t"><strong>Weekly signs{new Date().getDay() === 5 ? ' · today' : ''}</strong>The 6–8 week check, plus dhikr, fears and muhasabah stats</span>
+            <span className="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+          </span>
+        </Link>
         <div className="rem-seg pg-range" role="radiogroup" aria-label="Range">
           {[7, 30].map((n) => (
             <button key={n} role="radio" aria-checked={range === n} className={range === n ? 'on' : ''} onClick={() => setRange(n as 7 | 30)}>

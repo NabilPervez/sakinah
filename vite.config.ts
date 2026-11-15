@@ -14,10 +14,10 @@ export default defineConfig({
       registerType: 'prompt',
       includeAssets: ['sw-notify.js', 'favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'Serenity v2 - Daily Action Plan',
-        short_name: 'Serenity',
-        description: 'A local-first PWA guiding you through a structured daily action plan for anxiety and stress management',
-        theme_color: '#3f6f55',
+        name: 'Mutma’innah — the soul at rest',
+        short_name: 'Mutma’innah',
+        description: 'A faith-integrated daily practice for anxiety: tawakkul, dhikr, muhasabah and calm, all local-first.',
+        theme_color: '#2e4f86',
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
@@ -26,6 +26,8 @@ export default defineConfig({
         shortcuts: [
           { name: 'Back to it', short_name: 'Back to it', description: 'Start a 5-minute distraction reset', url: '/practice?reset=1' },
           { name: 'SOS', short_name: 'SOS', url: '/sos' },
+          { name: 'Tie your camel', short_name: 'Tie your camel', description: 'Turn a fear into prep + tawakkul', url: '/faith/camel' },
+          { name: 'Dhikr', short_name: 'Dhikr', url: '/faith/dhikr' },
           { name: 'Reminders', short_name: 'Reminders', url: '/reminders' },
         ],
         icons: [

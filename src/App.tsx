@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import AppShell from './components/AppShell';
 import ChecklistPage from './pages/ChecklistPage';
 import SosPage from './pages/SosPage';
@@ -13,6 +14,19 @@ import PracticePage from './pages/present/PracticePage';
 import QuickReframePage from './pages/story/QuickReframePage';
 import GratitudePage from './pages/story/GratitudePage';
 import SettingsPage from './pages/SettingsPage';
+import { lazy, Suspense } from 'react';
+// Faith pages load on demand (Nabil, 2026-11-15: keeps first paint light; 99 Names + 116 du'as are heavy).
+const FaithHubPage = lazy(() => import('./pages/faith/FaithHubPage'));
+const CamelPage = lazy(() => import('./pages/faith/CamelPage'));
+const DhikrPage = lazy(() => import('./pages/faith/DhikrPage'));
+const DuasPage = lazy(() => import('./pages/faith/DuasPage'));
+const NamesPage = lazy(() => import('./pages/faith/NamesPage'));
+const MuhasabahPage = lazy(() => import('./pages/faith/MuhasabahPage'));
+const SignsPage = lazy(() => import('./pages/faith/SignsPage'));
+const QuranPage = lazy(() => import('./pages/faith/FaithReadPages').then((m) => ({ default: m.QuranPage })));
+const ShiftsPage = lazy(() => import('./pages/faith/FaithReadPages').then((m) => ({ default: m.ShiftsPage })));
+const StudyPage = lazy(() => import('./pages/faith/FaithReadPages').then((m) => ({ default: m.StudyPage })));
+const HomePage = lazy(() => import('./pages/faith/FaithReadPages').then((m) => ({ default: m.HomePage })));
 import Onboarding from './components/Onboarding';
 import RemindersPage from './pages/RemindersPage';
 import ReminderEngine from './components/ReminderEngine';
@@ -21,18 +35,19 @@ import './reminders.css';
 import './story.css';
 import { initGlobalButtonSounds } from './utils/audio';
 
-const PageTransition = ({ children }: { children: React.ReactNode }) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-    className="page-transition-wrapper"
-    style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-  >
-    {children}
-  </motion.div>
-);
+/** GSAP page entrance (Nabil, 2026-11-15: replaces framer-motion). Cisco easing; reduced motion = no motion. */
+const PageTransition = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    if (!ref.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.from(ref.current, { opacity: 0, y: 12, duration: 0.6, ease: 'expo.out', clearProps: 'transform,opacity' });
+  }, { scope: ref });
+  return (
+    <div ref={ref} className="page-transition-wrapper" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <Suspense fallback={null}>{children}</Suspense>
+    </div>
+  );
+};
 
 export default function App() {
   const location = useLocation();
@@ -53,7 +68,7 @@ export default function App() {
       <ReminderEngine />
       <UpdatePrompt />
       <Onboarding />
-      <AnimatePresence mode="wait">
+      
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Navigate to="/today" replace />} />
           <Route path="/today" element={<PageTransition><ChecklistPage /></PageTransition>} />
@@ -64,6 +79,17 @@ export default function App() {
           <Route path="/reflect/gratitude" element={<PageTransition><GratitudePage /></PageTransition>} />
           <Route path="/reflect/ledger" element={<PageTransition><LedgerPage /></PageTransition>} />
           <Route path="/reflect/pillars" element={<PageTransition><PillarsPage /></PageTransition>} />
+          <Route path="/faith" element={<PageTransition><FaithHubPage /></PageTransition>} />
+          <Route path="/faith/camel" element={<PageTransition><CamelPage /></PageTransition>} />
+          <Route path="/faith/dhikr" element={<PageTransition><DhikrPage /></PageTransition>} />
+          <Route path="/faith/duas" element={<PageTransition><DuasPage /></PageTransition>} />
+          <Route path="/faith/names" element={<PageTransition><NamesPage /></PageTransition>} />
+          <Route path="/faith/quran" element={<PageTransition><QuranPage /></PageTransition>} />
+          <Route path="/faith/shifts" element={<PageTransition><ShiftsPage /></PageTransition>} />
+          <Route path="/faith/study" element={<PageTransition><StudyPage /></PageTransition>} />
+          <Route path="/faith/home" element={<PageTransition><HomePage /></PageTransition>} />
+          <Route path="/reflect/muhasabah" element={<PageTransition><MuhasabahPage /></PageTransition>} />
+          <Route path="/progress/signs" element={<PageTransition><SignsPage /></PageTransition>} />
           <Route path="/progress" element={<PageTransition><AnalyticsPage /></PageTransition>} />
           <Route path="/settings" element={<PageTransition><SettingsPage /></PageTransition>} />
           <Route path="/reminders" element={<PageTransition><RemindersPage /></PageTransition>} />
@@ -77,7 +103,7 @@ export default function App() {
           <Route path="/story/:sub" element={<Navigate to="/reflect" replace />} />
           <Route path="*" element={<Navigate to="/today" replace />} />
         </Routes>
-      </AnimatePresence>
+      
     </AppShell>
   );
 }

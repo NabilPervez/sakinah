@@ -1,19 +1,28 @@
 /* =============================================
-   SERENITY - GLOBAL STYLES
+   MUTMA’INNAH - GLOBAL STYLES
    Design System: "Quiet Precision" (web-design-cisco)
    Nabil, 2026-11-03: replaces Tactile Sanctuary. One typeface, closed
    scale (62/32/24/22/18/16/14/13), one sage ramp, hairlines not shadows.
    ============================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500&display=swap');
+/* Light mode only (Nabil, 2026-11-15). */
+:root { color-scheme: light; }
 
 :root {
-  /* Sage ramp — the one accent (Nabil, 2026-11-03: calm, not Khyzr green) */
-  --sage-50: #eef3ef;
-  --sage-200: #c4d6ca;
-  --sage-400: #6f9a80;
-  --sage-600: #3f6f55;
-  --sage-800: #24443a;
+  /* Lapis ramp — the one accent. Nabil, 2026-11-15: Mutma'innah rebrand (night-sky calm, light mode).
+     Kept the --sage-* names so every v2 screen restyles without touching it. */
+  --accent-50: #eef2f8;
+  --accent-200: #c5d2e6;
+  --accent-300: #8fa6cc;
+  --accent-400: #5f7fb3;
+  --accent-600: #2e4f86;
+  --accent-800: #1b2f52;
+  --sage-50: var(--accent-50);
+  --sage-200: var(--accent-200);
+  --sage-400: var(--accent-400);
+  --sage-600: var(--accent-600);
+  --sage-800: var(--accent-800);
 
   --ink: #111111;
   --ink-2: #6b6b6b;      /* grey continuation text */
@@ -542,7 +551,7 @@ textarea {
 }
 
 textarea:focus {
-  box-shadow: 0 0 0 2px rgba(63, 111, 85, 0.2);
+  box-shadow: 0 0 0 2px rgba(46, 79, 134, 0.2);
 }
 
 textarea::placeholder {
@@ -603,7 +612,7 @@ textarea::placeholder {
 
 .skill-card.selected {
   border-color: var(--color-primary);
-  background: rgba(63, 111, 85, 0.04);
+  background: rgba(46, 79, 134, 0.04);
 }
 
 .skill-card:active {

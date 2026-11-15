@@ -1,3 +1,4 @@
+import { NameSuggestion } from './faith/Weave';
 import { useState } from 'react';
 import { MOODS } from '../data/constants';
 import { addCheckIn } from '../data/db';
@@ -80,6 +81,7 @@ export default function EmotionalCheckIn({ onSaved }: EmotionalCheckInProps) {
             />
           </div>
 
+          <NameSuggestion level={anxietyLevel} />
           <button className="btn-primary" onClick={handleSave} disabled={saving}>
             <span className="material-symbols-outlined">check</span>
             {saving ? 'Saving\u2026' : 'Save Check-in'}

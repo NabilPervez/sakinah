@@ -103,7 +103,21 @@ export interface GratitudeNight {
   createdAt: number;
 }
 
+/** Faith › Tie your camel. */
+export interface Fear { id?: number; text: string; prepSteps: { text: string; done: boolean }[]; released: string[]; spouseFlag: boolean; status: 'open' | 'prepped' | 'released'; createdAt: number; date: string }
+/** Faith › one completed dhikr set. */
+export interface DhikrLog { id?: number; dhikrId: string; count: number; target: number; at: number; date: string }
+/** Reflect › Muhasabah: one row per day (al-Ghazali's four stages). */
+export interface MuhasabahDay { id?: number; date: string; intention: string; well: string; slip: string; release: string; createdAt: number }
+export interface QuranLog { id?: number; passageId: string; date: string }
+export interface WeeklySigns { id?: number; weekOf: string; scores: Record<string, number>; createdAt: number }
+
 class SerenityDB extends Dexie {
+  fears!: Table<Fear>;
+  dhikrLogs!: Table<DhikrLog>;
+  muhasabah!: Table<MuhasabahDay>;
+  quranLogs!: Table<QuranLog>;
+  weeklySigns!: Table<WeeklySigns>;
   gratitudes!: Table<GratitudeNight>;
   checklistDays!: Table<ChecklistDay>;
   checkIns!: Table<CheckIn>;
@@ -116,7 +130,7 @@ class SerenityDB extends Dexie {
   quickReframes!: Table<QuickReframe>;
 
   constructor() {
-    super('SerenityV2DB');
+    super('MutmainnahDB');
     this.version(1).stores({
       checklistDays: '++id, date',
       checkIns: '++id, timestamp, date',
@@ -144,6 +158,14 @@ class SerenityDB extends Dexie {
     // v4 — additive: nightly gratitude journal.
     this.version(4).stores({
       gratitudes: '++id, &date',
+    });
+    // v5 — additive: Mutma'innah faith layer (Nabil, 2026-11-15).
+    this.version(5).stores({
+      fears: '++id, createdAt, date, status',
+      dhikrLogs: '++id, at, date, dhikrId',
+      muhasabah: '++id, &date',
+      quranLogs: '++id, date, passageId',
+      weeklySigns: '++id, &weekOf',
     });
   }
 }
@@ -215,4 +237,26 @@ export async function saveGratitudeNight(n: Omit<GratitudeNight, 'id'>): Promise
   const existing = await getGratitudeNight(n.date);
   if (existing?.id) await db.gratitudes.update(existing.id, n);
   else await db.gratitudes.add(n);
+}
+
+// ── Helpers: Faith ──────────────────────────────────────
+
+export const addFear = (f: Omit<Fear, 'id'>) => db.fears.add(f);
+export const updateFear = (id: number, f: Partial<Fear>) => db.fears.update(id, f);
+export const getAllFears = () => db.fears.orderBy('createdAt').reverse().toArray();
+export const addDhikrLog = (l: Omit<DhikrLog, 'id'>) => db.dhikrLogs.add(l);
+export const getAllDhikrLogs = () => db.dhikrLogs.orderBy('at').reverse().toArray();
+export const getMuhasabah = (date: string) => db.muhasabah.where('date').equals(date).first();
+export const getAllMuhasabah = () => db.muhasabah.orderBy('date').reverse().toArray();
+export async function saveMuhasabah(m: Omit<MuhasabahDay, 'id'>): Promise<void> {
+  const ex = await getMuhasabah(m.date);
+  if (ex?.id) await db.muhasabah.update(ex.id, m); else await db.muhasabah.add(m);
+}
+export const getQuranLogs = () => db.quranLogs.orderBy('date').reverse().toArray();
+export const addQuranLog = (l: Omit<QuranLog, 'id'>) => db.quranLogs.add(l);
+export const getWeeklySigns = (weekOf: string) => db.weeklySigns.where('weekOf').equals(weekOf).first();
+export const getAllWeeklySigns = () => db.weeklySigns.orderBy('weekOf').toArray();
+export async function saveWeeklySigns(w: Omit<WeeklySigns, 'id'>): Promise<void> {
+  const ex = await getWeeklySigns(w.weekOf);
+  if (ex?.id) await db.weeklySigns.update(ex.id, w); else await db.weeklySigns.add(w);
 }

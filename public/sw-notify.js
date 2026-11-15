@@ -1,4 +1,4 @@
-// Imported by the Workbox service worker. Opens/focuses Serenity on notification tap.
+// Imported by the Workbox service worker. Opens/focuses Mutma’innah on notification tap.
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
   const url = (event.notification.data && event.notification.data.url) || '/today';

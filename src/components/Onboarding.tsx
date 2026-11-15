@@ -43,9 +43,9 @@ export default function Onboarding() {
 
   const steps = [
     <>
-      <span className="material-symbols-outlined ob-hero-icon">spa</span>
-      <h1 className="ob-h">Welcome to Serenity.</h1>
-      <p className="ob-p">A calm daily plan for anxiety and stress. Small steps, morning to night. Two minutes to set up.</p>
+      <span className="material-symbols-outlined ob-hero-icon">brightness_3</span>
+      <h1 className="ob-h">Welcome to Mutma’innah. <span style={{ color: 'var(--ink-2)' }}>The soul at rest.</span></h1>
+      <p className="ob-p">A calm daily plan for anxiety, rooted in faith. Tawakkul, dhikr and small steps, morning to night. Two minutes to set up.</p>
     </>,
     <>
       <h1 className="ob-h">How it fits together.</h1>
@@ -77,7 +77,7 @@ export default function Onboarding() {
       <p className="ob-p">For check-ins, nightly gratitude and your Friday reflection. You can change any of it later.</p>
       {perm === 'granted' ? <p className="ob-ok">✓ Notifications are on</p>
         : perm === 'denied' ? <p className="ob-p">Blocked in your browser settings — you can still use in-app reminders.</p>
-        : perm === 'unsupported' ? <p className="ob-p">On iPhone, add Serenity to your Home Screen first, then enable them in Settings.</p>
+        : perm === 'unsupported' ? <p className="ob-p">On iPhone, add Mutma’innah to your Home Screen first, then enable them in Settings.</p>
         : <button className="btn-primary" onClick={enableNotifs}>Enable notifications</button>}
     </>,
     <>
@@ -89,7 +89,7 @@ export default function Onboarding() {
   const last = step === steps.length - 1;
 
   return (
-    <div className="ob-overlay" role="dialog" aria-modal="true" aria-label="Welcome to Serenity">
+    <div className="ob-overlay" role="dialog" aria-modal="true" aria-label="Welcome to Mutma’innah">
       <div className="ob-card animate-fade-up" key={step}>
         <div className="ob-dots" aria-hidden="true">{steps.map((_, i) => <i key={i} className={i <= step ? 'on' : ''} />)}</div>
         <div className="ob-body">{steps[step]}</div>

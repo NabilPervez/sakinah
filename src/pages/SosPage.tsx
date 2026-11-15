@@ -22,6 +22,12 @@ export default function SosPage() {
             <Link to="/practice?open=breathe" className="qp-btn qp-btn-primary">
               <span className="material-symbols-outlined" aria-hidden="true">air</span> Breathe now
             </Link>
+            <Link to="/faith/camel" className="qp-btn qp-btn-ghost">
+              <span className="material-symbols-outlined" aria-hidden="true">anchor</span> Tie your camel
+            </Link>
+            <Link to="/faith/dhikr?id=karb" className="qp-btn qp-btn-ghost">
+              <span className="material-symbols-outlined" aria-hidden="true">volunteer_activism</span> Du’a al-Karb
+            </Link>
           </div>
         </header>
 

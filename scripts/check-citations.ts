@@ -1,0 +1,16 @@
+/** Fails the build if any faith item lacks a source (PRD §9, DoD). */
+import { NAMES_99, NEED_DUAS, NEED_DUA_NOTE, DHIKR, GAMEPLAN_DUAS, ANCHOR_NAMES, SHIFTS, PASSAGES, LESSONS, AKHLAQ, NIYYAH } from '../src/data/faith/faith';
+const bad: string[] = [];
+const need = (ok: unknown, where: string) => { if (!ok || (typeof ok === 'string' && !ok.trim())) bad.push(where); };
+NAMES_99.forEach((n) => need(n.verse?.citation || n.hadith?.reference || n.hadith?.topic, `Name ${n.transliteration}`));
+need(NEED_DUA_NOTE.source, 'Need du’a note'); need(NEED_DUAS.length, 'Need du’as loaded');
+DHIKR.forEach((d) => need(d.source, `Dhikr ${d.id}`));
+GAMEPLAN_DUAS.forEach((d) => need(d.source, `Du’a ${d.id}`));
+ANCHOR_NAMES.forEach((a) => need(a.source, `Anchor ${a.name}`));
+SHIFTS.forEach((s) => need(s.source, `Shift ${s.title}`));
+Object.values(PASSAGES).forEach((p) => need(p.ref, `Passage ${p.id}`));
+LESSONS.forEach((l) => l.blocks.forEach((b, i) => { if (b.kind !== 'note') need(b.source, `Lesson ${l.id} #${i + 1}`); }));
+AKHLAQ.forEach((a) => need(a.source, `Akhlaq ${a.title}`));
+Object.entries(NIYYAH).forEach(([k, v]) => need(v.source, `Niyyah ${k}`));
+if (bad.length) { console.error(`✗ ${bad.length} faith item(s) missing a citation:\n- ${bad.join('\n- ')}`); process.exit(1); }
+console.log(`✓ citations: ${NAMES_99.length} Names, ${DHIKR.length} dhikr, ${GAMEPLAN_DUAS.length + NEED_DUAS.length} du’as, ${LESSONS.length} lessons — all sourced`);

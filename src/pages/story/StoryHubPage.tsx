@@ -17,6 +17,7 @@ const SECTIONS: { label: string; note?: string; rows: Row[] }[] = [
   {
     label: 'Nightly',
     rows: [
+      { to: '/reflect/muhasabah', title: 'Muhasabah.', meta: '3 min', blurb: 'Morning intention, nightly review: shukr, istighfar, hand it over.' },
       { to: '/reflect/gratitude', title: 'Gratitude journal.', meta: '2 min', blurb: 'Three things from today, and why one mattered.' },
       { to: '/reflect/ledger', title: 'Effort ledger.', meta: '3 min', blurb: 'What I tried today, and what I hand to Allah.' },
     ],

@@ -66,7 +66,7 @@ export default function SettingsPage() {
             <div className="rem-row" style={{ marginTop: 8 }}>
               <div>
                 <div className="rem-label">Protect from cleanup</div>
-                <div className="rem-sub">{storage.persisted ? 'On — your browser won’t clear Serenity’s data to free space.' : 'Ask the browser to never auto-clear your data.'}</div>
+                <div className="rem-sub">{storage.persisted ? 'On — your browser won’t clear Mutma’innah’s data to free space.' : 'Ask the browser to never auto-clear your data.'}</div>
               </div>
               {!storage.persisted && (
                 <button className="btn-ghost" onClick={async () => { const ok = await requestPersistence(); showToast(ok ? 'Protected ✓' : 'Browser declined — install the app to Home Screen and try again'); refresh(); }}>Protect</button>
@@ -125,7 +125,7 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        <p className="rem-note" style={{ textAlign: 'center' }}>Serenity v{__APP_VERSION__} · built {__BUILD_DATE__}</p>
+        <p className="rem-note" style={{ textAlign: 'center' }}>Mutma’innah v{__APP_VERSION__} · built {__BUILD_DATE__}</p>
       </div>
     </>
   );

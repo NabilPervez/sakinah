@@ -1,8 +1,8 @@
 import { db } from './db';
 
-/** localStorage keys owned by Serenity (zustand persist stores). */
+/** localStorage keys owned by the app (zustand persist stores). */
 const LS_KEYS = ['serenity-v2-preferences', 'serenity-v2-reminders'];
-const FORMAT = 'serenity-v2-backup';
+const FORMAT = 'serenity-v2-backup'; // kept so v2 exports import into Mutma'innah (v3)
 
 export interface Backup {
   format: typeof FORMAT;
@@ -57,7 +57,7 @@ export async function exportCSV() {
 /** Restores a backup. mode 'replace' wipes first; 'merge' adds/overwrites by id. */
 export async function importBackup(file: File, mode: 'replace' | 'merge'): Promise<number> {
   const b = JSON.parse(await file.text()) as Backup;
-  if (b?.format !== FORMAT || !b.tables) throw new Error('This file isn’t a Serenity backup.');
+  if (b?.format !== FORMAT || !b.tables) throw new Error('This file isn’t a Serenity or Mutma’innah backup.');
   let n = 0;
   await db.transaction('rw', db.tables, async () => {
     for (const t of db.tables) {
@@ -82,7 +82,7 @@ export async function storageEstimate(): Promise<{ used: number; persisted: bool
   return { used: e.usage ?? 0, persisted };
 }
 
-/** Asks the browser not to evict Serenity's data under storage pressure. */
+/** Asks the browser not to evict the app's data under storage pressure. */
 export async function requestPersistence(): Promise<boolean> {
   return (await navigator.storage?.persist?.()) ?? false;
 }

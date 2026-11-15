@@ -10,6 +10,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { to: '/today', icon: 'today', label: 'Today' },
   { to: '/practice', icon: 'self_improvement', label: 'Practice' },
+  { to: '/faith', icon: 'mosque', label: 'Faith' },
   { to: '/reflect', icon: 'auto_stories', label: 'Reflect' },
   { to: '/progress', icon: 'monitoring', label: 'Progress' },
 ];
@@ -20,8 +21,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       {/* Desktop Sidebar */}
       <nav className="nav-drawer">
         <div className="nav-brand">
-          <span className="material-symbols-outlined" style={{ fontSize: '24px' }}>spa</span>
-          Serenity
+          <span className="material-symbols-outlined" style={{ fontSize: '24px' }}>brightness_3</span>
+          Mutma’innah
         </div>
         <div className="nav-links">
           {NAV_ITEMS.map((item) => (

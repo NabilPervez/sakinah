@@ -1,0 +1,100 @@
+/* =============================================
+   MUTMA'INNAH — FAITH LAYER
+   Quiet Precision: hairlines, closed scale (62/32/24/22/18/16/14/13), lapis ramp.
+   Nabil, 2026-11-15.
+   ============================================= */
+
+/* Arabic — Noto Naskh, RTL, never letter-spaced or split (Cisco rule). */
+.ar { font-family: 'Noto Naskh Arabic', serif; direction: rtl; text-align: right; letter-spacing: 0; color: var(--ink); margin: 8px 0; line-height: 1.9; word-break: keep-all; }
+.ar-md { font-size: 22px; }
+.ar-lg { font-size: 32px; line-height: 1.7; text-align: center; }
+.name-ar, .dhikr-ar, .faith-tile-ar { font-family: 'Noto Naskh Arabic', serif; letter-spacing: 0; }
+.name-ar { font-size: 22px; color: var(--accent-600); flex-shrink: 0; }
+
+/* Citations */
+.src-line { display: flex; align-items: flex-start; gap: 6px; font-size: 13px; color: var(--ink-2); margin: 4px 0 8px; }
+.src-line .material-symbols-outlined { font-size: 16px; color: var(--accent-600); margin-top: 1px; }
+.cite { display: inline; }
+.cite-btn { display: inline-flex; align-items: center; gap: 4px; font: inherit; font-size: 13px; font-weight: 500; color: var(--accent-600); background: none; border: 0; padding: 2px 0; cursor: pointer; }
+.cite-btn .material-symbols-outlined { font-size: 15px; }
+.cite-text { display: block; font-size: 13px; color: var(--ink-2); padding: 6px 10px; margin-top: 4px; border-left: 2px solid var(--accent-200); }
+.cite-btn:focus-visible, .counter-ring:focus-visible { outline: 2px solid var(--accent-600); outline-offset: 3px; }
+
+/* Evidence block */
+.evidence { margin: 16px 0; padding: 16px 0 8px 16px; border-left: 2px solid var(--accent-200); }
+.evidence p { margin: 0 0 4px; font-size: 16px; color: var(--ink); }
+
+/* Today tiles: one slab, hairline seams (wall-of-tiles pattern) */
+.faith-today { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius-md); overflow: hidden; margin: 24px 0 8px; }
+.faith-tile { display: flex; flex-direction: column; gap: 4px; padding: 16px; background: var(--paper); color: var(--ink); text-decoration: none; min-width: 0; -webkit-tap-highlight-color: transparent; }
+.faith-tile:active { background: var(--paper-2); }
+.faith-tile.accent { background: var(--accent-600); color: #fff; }
+.faith-tile.accent .faith-tile-k, .faith-tile.accent .faith-tile-s { color: var(--accent-200); }
+.faith-tile-k { font-size: 13px; font-weight: 500; color: var(--ink-2); }
+.faith-tile-v { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
+.faith-tile-ar { font-size: 24px; line-height: 1.4; }
+.faith-tile-s { font-size: 13px; color: var(--ink-2); overflow-wrap: anywhere; }
+@media (max-width: 560px) { .faith-today { grid-template-columns: minmax(0, 1fr); } }
+
+/* Multi-step flows */
+.flow { display: flex; flex-direction: column; gap: 16px; padding: 8px 0 24px; }
+.flow-k { font-size: 13px; font-weight: 500; color: var(--accent-600); margin: 0; }
+.flow-check { display: flex; align-items: center; gap: 10px; font-size: 16px; min-height: 44px; cursor: pointer; }
+.flow-check input { width: 20px; height: 20px; accent-color: var(--accent-600); }
+
+/* Counter */
+.counter { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 8px 0; }
+.counter-ring { --pct: 0deg; width: 200px; height: 200px; border-radius: 50%; border: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  background: radial-gradient(closest-side, var(--paper) 88%, transparent 89%), conic-gradient(var(--accent-600) var(--pct), var(--accent-50) 0);
+  -webkit-tap-highlight-color: transparent; user-select: none; touch-action: manipulation; }
+.counter-ring.done { background: radial-gradient(closest-side, var(--accent-50) 88%, transparent 89%), conic-gradient(var(--accent-600) 360deg, var(--accent-50) 0); }
+.counter-n { font-size: 62px; font-weight: 600; letter-spacing: -0.027em; color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+.counter-t { font-size: 14px; color: var(--ink-2); }
+
+.qp-chip.active { background: var(--accent-600); border-color: var(--accent-600); color: #fff; }
+.dhikr-row { display: flex; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px 16px; width: 100%; background: var(--paper); border: 0; text-align: left; cursor: pointer; font: inherit; }
+.dhikr-row.open { background: var(--accent-50); }
+.dhikr-ar { font-size: 22px; direction: rtl; text-align: right; line-height: 1.7; }
+
+.need-dua { border-left: 2px solid var(--accent-600); padding-left: 12px; }
+
+/* Fears */
+.fear-head { display: flex; gap: 8px; margin: 0; }
+.fear-status { font-size: 13px; font-weight: 500; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--hairline); color: var(--ink-2); text-transform: capitalize; }
+.fear-status.open { color: var(--accent-600); border-color: var(--accent-200); }
+.fear-status.released { background: var(--accent-50); }
+
+/* Shifts & lessons */
+.shift { padding: 24px 0; border-top: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 8px; }
+.shift-from, .shift-to { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 8px; margin: 0; font-size: 16px; }
+.shift-from { color: var(--ink-2); }
+.shift-to { color: var(--ink); font-weight: 500; }
+.shift-from span, .shift-to span { font-size: 13px; font-weight: 500; color: var(--accent-600); padding-top: 2px; }
+.lesson-block { padding: 16px 0; border-top: 1px solid var(--hairline); }
+.lesson-block:first-child { border-top: 0; }
+.lesson-block p { margin: 0 0 6px; font-size: 16px; line-height: 1.6; }
+.lesson-kind { display: inline-block; font-size: 13px; font-weight: 500; color: var(--accent-600); margin-bottom: 4px; }
+.lesson-block.note p { color: var(--ink-2); }
+.bib { padding-left: 24px; margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.7; }
+
+/* Muhasabah focus card */
+.prompt-card { display: flex; flex-direction: column; gap: 10px; padding: 20px; margin-bottom: 16px; }
+.prompt-card label { font-size: 16px; font-weight: 500; }
+.prompt-card label em { font-style: normal; color: var(--accent-600); }
+.prompt-card.focus { border-color: var(--accent-200); }
+
+/* Today weave-ins */
+.faith-strip { display: flex; flex-direction: column; gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius-md); overflow: hidden; margin: 16px 0; }
+.faith-strip > * { background: var(--paper); padding: 14px 16px; display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; min-width: 0; }
+.faith-strip .material-symbols-outlined { color: var(--accent-600); font-size: 20px; flex-shrink: 0; }
+.faith-strip-t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; font-size: 14px; }
+.faith-strip-t strong { font-size: 16px; font-weight: 500; }
+.niyyah { font-size: 14px; color: var(--ink-2); padding: 10px 12px; border-left: 2px solid var(--accent-200); margin: 8px 0; }
+.niyyah strong { color: var(--accent-600); font-weight: 500; }
+
+.chart-legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--ink-2); margin-bottom: 8px; }
+.chart-legend span::before { content: ''; display: inline-block; width: 10px; height: 2px; margin-right: 6px; vertical-align: middle; }
+.lg-a::before { background: var(--accent-600); }
+.lg-b::before { background: var(--accent-300); }
+
+@media (prefers-reduced-motion: reduce) { .counter-ring { transition: none; } }

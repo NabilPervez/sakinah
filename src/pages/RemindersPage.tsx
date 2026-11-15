@@ -46,7 +46,7 @@ export default function RemindersPage() {
   const test = async () => {
     unlockAudio();
     if (s.soundsOn) playSound(s.routineSound, s.volume);
-    const ok = await showSystemNotification('Serenity is set up', { body: 'This is what your check-ins will look like.', tag: 'test', url: '/today' });
+    const ok = await showSystemNotification('Mutma’innah is set up', { body: 'This is what your check-ins will look like.', tag: 'test', url: '/today' });
     if (!ok && s.notificationsOn) setPerm(Notification.permission);
   };
 
@@ -68,7 +68,7 @@ export default function RemindersPage() {
               <div className="rem-label">Push notifications</div>
               <div className="rem-sub">
                 {perm === 'denied' ? 'Blocked — allow notifications for this site in your browser settings.'
-                  : perm === 'unsupported' ? 'Not supported here. On iPhone, add Serenity to your Home Screen first.'
+                  : perm === 'unsupported' ? 'Not supported here. On iPhone, add Mutma’innah to your Home Screen first.'
                   : 'System notifications for check-ins, reminders and alarms.'}
               </div>
             </div>
@@ -87,7 +87,7 @@ export default function RemindersPage() {
             <span className="material-symbols-outlined" style={{ fontSize: 18 }}>notifications_active</span> Send a test
           </button>
           <p className="rem-note">
-            Notifications fire while Serenity is open or running in the background. Install it to your Home Screen and leave it in your app switcher for the most reliable delivery.
+            Notifications fire while Mutma’innah is open or running in the background. Install it to your Home Screen and leave it in your app switcher for the most reliable delivery.
           </p>
         </section>
 

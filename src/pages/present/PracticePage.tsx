@@ -1,3 +1,4 @@
+import { Niyyah } from '../../components/faith/Weave';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
@@ -165,6 +166,8 @@ export default function PracticePage() {
         <header className="pr-hero animate-fade-up">
           <h1 className="pr-h1">Be here. <span>No judgment.</span></h1>
           <p className="pr-lede">Happiness is existing in the moment. One minute at a time.</p>
+          <Niyyah k="nonJudgment" />
+          <Niyyah k="backToIt" />
         </header>
 
         <section className="pr-stats" aria-label="Today">

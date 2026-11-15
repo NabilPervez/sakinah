@@ -1,3 +1,4 @@
+import { TodayFaith } from '../components/faith/Weave';
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import TopBar from '../components/TopBar';
@@ -106,6 +107,8 @@ export default function ChecklistPage() {
             <span className="progress-ring-text" style={{ fontSize: '14px' }}>{progressPct}%</span>
           </div>
         </header>
+
+        <TodayFaith />
 
         <nav className="today-actions" aria-label="Quick actions">
           <button className="today-action" onClick={() => setCheckIn(true)}>

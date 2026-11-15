@@ -22,7 +22,7 @@ function fmt(ms: number) {
 /**
  * "Back to it" — the 5-minute distraction reset (PRD §5.3).
  * The pending reset lives in Dexie, so a reload or app switch keeps the countdown.
- * Limitation: the alert only fires while Serenity is open (web can't schedule
+ * Limitation: the alert only fires while Mutma’innah is open (web can't schedule
  * background alarms reliably, especially on iOS) — so we also offer a phone timer hint.
  */
 export default function BackToIt({ autoStart, onChange }: { autoStart?: boolean; onChange: () => void }) {
@@ -114,7 +114,7 @@ export default function BackToIt({ autoStart, onChange }: { autoStart?: boolean;
           <button className="qp-btn qp-btn-primary" onClick={begin}>Start 5 minutes</button>
           <button className="qp-btn qp-btn-ghost" onClick={() => setAsking(false)}>Not now</button>
         </div>
-        <p className="pr-hint">Alert rings while Serenity is open. Leaving the app? Set a 5-minute phone timer too.</p>
+        <p className="pr-hint">Alert rings while Mutma’innah is open. Leaving the app? Set a 5-minute phone timer too.</p>
       </div>
     );
   }

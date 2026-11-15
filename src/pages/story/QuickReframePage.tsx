@@ -1,3 +1,4 @@
+import { Niyyah } from '../../components/faith/Weave';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
@@ -44,6 +45,8 @@ export default function QuickReframePage() {
         <header className="pr-hero">
           <h1 className="pr-h1">Reframe it. <span>Find the good.</span></h1>
           <p className="pr-lede">Write what happened, just the facts. Then the version that helps you.</p>
+          <Niyyah k="reframe" />
+          <p className="pr-hint">Ask: what might Allah’s wisdom be here? “Perhaps you hate a thing and it is good for you” (Qur’an 2:216).</p>
         </header>
         <div className="pr-form">
           <label className="pr-label" htmlFor="rf-what">What happened</label>
