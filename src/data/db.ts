@@ -130,7 +130,7 @@ class SerenityDB extends Dexie {
   quickReframes!: Table<QuickReframe>;
 
   constructor() {
-    super('MutmainnahDB');
+    super('SakinahDB');
     this.version(1).stores({
       checklistDays: '++id, date',
       checkIns: '++id, timestamp, date',
@@ -159,7 +159,7 @@ class SerenityDB extends Dexie {
     this.version(4).stores({
       gratitudes: '++id, &date',
     });
-    // v5 — additive: Mutma'innah faith layer (Nabil, 2026-11-15).
+    // v5 — additive: Sakinah faith layer (Nabil, 2026-11-15).
     this.version(5).stores({
       fears: '++id, createdAt, date, status',
       dhikrLogs: '++id, at, date, dhikrId',

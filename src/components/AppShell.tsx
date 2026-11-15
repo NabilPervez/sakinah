@@ -22,7 +22,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <nav className="nav-drawer">
         <div className="nav-brand">
           <span className="material-symbols-outlined" style={{ fontSize: '24px' }}>brightness_3</span>
-          Mutma’innah
+          Sakinah
         </div>
         <div className="nav-links">
           {NAV_ITEMS.map((item) => (

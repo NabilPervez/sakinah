@@ -177,7 +177,7 @@ async function buildPrompt(key: string): Promise<Prompt | null> {
       key,
       kind: r.kind,
       title: r.label,
-      body: r.kind === 'alarm' ? `It’s ${r.time}.` : 'A gentle nudge from Mutma’innah.',
+      body: r.kind === 'alarm' ? `It’s ${r.time}.` : 'A gentle nudge from Sakinah.',
       url: r.link ?? '',
       sound: r.sound,
     };

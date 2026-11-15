@@ -1,8 +1,8 @@
-# Mutma'innah — the soul at rest
+# Sakinah — tranquility of the heart
 
-> “O soul at rest, return to your Lord, well-pleased and pleasing.” — Qur’an 89:27–28
+> “It is He who sent down tranquility (sakinah) into the hearts of the believers.” — Qur’an 48:4
 
-Mutma'innah (Serenity v3) is a local-first PWA for anxiety, with faith woven through every practice: tawakkul, dhikr, muhasabah, the Names of Allah, and the therapy exercises from Serenity v2.
+Sakinah (Serenity v3) is a local-first PWA for anxiety, with faith woven through every practice: tawakkul, dhikr, muhasabah, the Names of Allah, and the therapy exercises from Serenity v2.
 
 ## What's inside
 
@@ -28,7 +28,7 @@ Content source: the Qaf gameplan (kept whole in `src/data/faith/faith.ts`), plus
 
 ## Moving data from Serenity v2
 
-The app lives at a new address, so its local data starts empty. In Serenity v2, go to **Settings → Export JSON**, then in Mutma'innah go to **Settings → Import**. v2 backups are accepted as-is.
+The app lives at a new address, so its local data starts empty. In Serenity v2, go to **Settings → Export JSON**, then in Sakinah go to **Settings → Import**. v2 backups are accepted as-is.
 
 ## Stack
 
@@ -40,4 +40,4 @@ npm run dev      # local
 npm run build    # citation check → type check → build
 ```
 
-Deployed on Netlify (`netlify.toml`). The PRD lives in Notion: *PRD — Mutma'innah (Serenity v3)*.
+Deployed on Netlify (`netlify.toml`). The PRD lives in Notion: *PRD — Sakinah (Serenity v3)*.

@@ -29,7 +29,7 @@ export interface Affirmation {
 export const COPING_SKILLS: CopingSkill[] = copingSkillsData as CopingSkill[];
 
 import { SHIFTS } from './faith/faith';
-/** Mutma'innah: the 5 gameplan mindset shifts lead the list, each cited (Nabil, 2026-11-15). */
+/** Sakinah: the 5 gameplan mindset shifts lead the list, each cited (Nabil, 2026-11-15). */
 export const AFFIRMATIONS: Affirmation[] = [
   ...SHIFTS.map((s, i) => ({ id: `shift_${i + 1}`, text: `${s.to} (${s.source})` })),
   ...(affirmationsData as Affirmation[]),

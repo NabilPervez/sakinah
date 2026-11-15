@@ -1,4 +1,4 @@
-# AGENTS.md — Mutma'innah
+# AGENTS.md — Sakinah
 
 - **Build order:** PRD (Notion) → sprint plan with DoD → build in passes → deploy → README.
 - **Design:** Quiet Precision. One sans (Outfit), plus Noto Naskh Arabic (RTL, never letter-spaced). Closed type scale 62/32/24/22/18/16/14/13. Lapis ramp `--accent-*`. Hairlines, not shadows. Light mode only.

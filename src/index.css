@@ -1,5 +1,5 @@
 /* =============================================
-   MUTMA’INNAH - GLOBAL STYLES
+   SAKINAH - GLOBAL STYLES
    Design System: "Quiet Precision" (web-design-cisco)
    Nabil, 2026-11-03: replaces Tactile Sanctuary. One typeface, closed
    scale (62/32/24/22/18/16/14/13), one sage ramp, hairlines not shadows.
@@ -10,7 +10,7 @@
 :root { color-scheme: light; }
 
 :root {
-  /* Lapis ramp — the one accent. Nabil, 2026-11-15: Mutma'innah rebrand (night-sky calm, light mode).
+  /* Lapis ramp — the one accent. Nabil, 2026-11-15: Sakinah rebrand (night-sky calm, light mode).
      Kept the --sage-* names so every v2 screen restyles without touching it. */
   --accent-50: #eef2f8;
   --accent-200: #c5d2e6;

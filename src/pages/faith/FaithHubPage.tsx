@@ -24,7 +24,7 @@ const SECTIONS: { label: string; rows: Row[] }[] = [
   ] },
 ];
 
-/** Faith tab (Mutma'innah v3). Nabil, 2026-11-15: faith gets its own tab AND is woven everywhere. */
+/** Faith tab (Sakinah v3). Nabil, 2026-11-15: faith gets its own tab AND is woven everywhere. */
 export default function FaithHubPage() {
   const ref = useRise<HTMLDivElement>();
   const anchor = ANCHOR_NAMES[dayIndex(ANCHOR_NAMES.length)];
@@ -36,10 +36,10 @@ export default function FaithHubPage() {
       <TopBar title="Faith" icon="mosque" />
       <div className="pr-page" ref={ref}>
         <header className="pr-hero" data-rise>
-          <h1 className="pr-h1">The soul at rest. <span>Built daily.</span></h1>
-          <Arabic>يَا أَيَّتُهَا النَّفْسُ الْمُطْمَئِنَّةُ</Arabic>
-          <p className="pr-lede">“O soul at rest, return to your Lord, well-pleased and pleasing.”</p>
-          <SourceLine>Qur’an 89:27–28</SourceLine>
+          <h1 className="pr-h1">Tranquility, sent down. <span>Received daily.</span></h1>
+          <Arabic>هُوَ الَّذِي أَنزَلَ السَّكِينَةَ فِي قُلُوبِ الْمُؤْمِنِينَ</Arabic>
+          <p className="pr-lede">“It is He who sent down tranquility (sakinah) into the hearts of the believers.”</p>
+          <SourceLine>Qur’an 48:4</SourceLine>
         </header>
 
         <section className="faith-today" data-rise>

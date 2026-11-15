@@ -1,5 +1,5 @@
 /**
- * Mutma'innah — faith content.
+ * Sakinah — faith content.
  * Source: Qaf gameplan (Notion › Private › Islamic Gameplan), Nov 15 2026.
  * Rule (Nabil, 2026-11-15): nothing cut; every item carries a citation.
  * sourceType: quran | hadith | scholar | composed. ⚠ = verify before relying on it.

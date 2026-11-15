@@ -3,19 +3,23 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import pkg from './package.json'
 
+const PREVIEW = !!process.env.VITE_PREVIEW
+
 export default defineConfig({
+  base: PREVIEW ? './' : '/',
+  resolve: PREVIEW ? { alias: { 'virtual:pwa-register/react': '/src/pwa-stub.ts' } } : undefined,
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
     __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10)),
   },
   plugins: [
     react(),
-    VitePWA({
+    !PREVIEW && VitePWA({
       registerType: 'prompt',
       includeAssets: ['sw-notify.js', 'favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'Mutma’innah — the soul at rest',
-        short_name: 'Mutma’innah',
+        name: 'Sakinah — tranquility of the heart',
+        short_name: 'Sakinah',
         description: 'A faith-integrated daily practice for anxiety: tawakkul, dhikr, muhasabah and calm, all local-first.',
         theme_color: '#2e4f86',
         background_color: '#ffffff',

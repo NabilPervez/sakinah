@@ -2,7 +2,7 @@ import { db } from './db';
 
 /** localStorage keys owned by the app (zustand persist stores). */
 const LS_KEYS = ['serenity-v2-preferences', 'serenity-v2-reminders'];
-const FORMAT = 'serenity-v2-backup'; // kept so v2 exports import into Mutma'innah (v3)
+const FORMAT = 'serenity-v2-backup'; // kept so v2 exports import into Sakinah (v3)
 
 export interface Backup {
   format: typeof FORMAT;
@@ -57,7 +57,7 @@ export async function exportCSV() {
 /** Restores a backup. mode 'replace' wipes first; 'merge' adds/overwrites by id. */
 export async function importBackup(file: File, mode: 'replace' | 'merge'): Promise<number> {
   const b = JSON.parse(await file.text()) as Backup;
-  if (b?.format !== FORMAT || !b.tables) throw new Error('This file isn’t a Serenity or Mutma’innah backup.');
+  if (b?.format !== FORMAT || !b.tables) throw new Error('This file isn’t a Serenity or Sakinah backup.');
   let n = 0;
   await db.transaction('rw', db.tables, async () => {
     for (const t of db.tables) {
