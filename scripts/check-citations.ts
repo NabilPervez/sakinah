@@ -1,5 +1,6 @@
 /** Fails the build if any faith item lacks a source (PRD §9, DoD). */
 import { NAMES_99, NEED_DUAS, NEED_DUA_NOTE, DHIKR, GAMEPLAN_DUAS, ANCHOR_NAMES, SHIFTS, PASSAGES, LESSONS, AKHLAQ, NIYYAH, LISTEN_WHY, LISTEN_HOW } from '../src/data/faith/faith';
+import { DELIVERANCES } from '../src/data/faith/munjiyat';
 import { REFRAME_CARDS } from '../src/data/faith/reframeCards';
 const bad: string[] = [];
 const need = (ok: unknown, where: string) => { if (!ok || (typeof ok === 'string' && !ok.trim())) bad.push(where); };
@@ -16,5 +17,7 @@ LISTEN_HOW.forEach((h, i) => need(h.source, `Listen how #${i + 1}`));
 AKHLAQ.forEach((a) => need(a.source, `Akhlaq ${a.title}`));
 Object.entries(NIYYAH).forEach(([k, v]) => need(v.source, `Niyyah ${k}`));
 REFRAME_CARDS.forEach((c) => { need(c.text.source, `Card ${c.id}`); if (c.support) need(c.support.source, `Card ${c.id} support`); });
+DELIVERANCES.forEach((d) => need(d.source, `Deliverance ${d.id}`));
+need(DELIVERANCES.length === 10, 'Deliverances: all 10 books');
 if (bad.length) { console.error(`✗ ${bad.length} faith item(s) missing a citation:\n- ${bad.join('\n- ')}`); process.exit(1); }
 console.log(`✓ citations: ${NAMES_99.length} Names, ${DHIKR.length} dhikr, ${GAMEPLAN_DUAS.length + NEED_DUAS.length} du’as, ${LESSONS.length} lessons — all sourced`);

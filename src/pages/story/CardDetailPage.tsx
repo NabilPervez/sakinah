@@ -6,6 +6,7 @@ import { Arabic, SourceLine, useRise } from '../../components/faith/FaithUI';
 import { useCards } from '../../hooks/useCards';
 import { useCardStore, MAX_PINS } from '../../store/useCardStore';
 import { ANCHOR_NAMES } from '../../data/faith/faith';
+import { bookForTags } from '../../data/faith/munjiyat';
 import { addReframeUse, deleteCustomCard } from '../../data/db';
 import { getTodayDateString } from '../../store/useAppStore';
 import '../../present.css';
@@ -42,6 +43,7 @@ export default function CardDetailPage() {
 
   if (!card) return (<><TopBar title="Card" icon="style" /><div className="pr-page"><p className="pr-lede">Loading…</p><Link to="/reflect/cards">All cards</Link></div></>);
   const anchor = ANCHOR_NAMES.find((a) => a.key === card.anchorName);
+  const book = bookForTags(card.tags);
 
   const reveal = () => {
     setRevealed(true);
@@ -87,6 +89,7 @@ export default function CardDetailPage() {
             ? <p ref={posRef} className="rc-pos">{card.positive}</p>
             : <button type="button" className="qp-btn qp-btn-ghost" onClick={reveal}>Turn it</button>}
           {anchor && <Link to="/faith/names" className="rc-chip">{anchor.name} · {anchor.title}</Link>}
+          {book && <Link to={`/faith/deliverances?id=${book.id}`} className="rc-chip">Deliverance · {book.title}</Link>}
         </section>
 
         <section className="rc-sec" data-rise>

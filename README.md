@@ -41,3 +41,11 @@ npm run build    # citation check → type check → build
 ```
 
 Deployed on Netlify (`netlify.toml`). The PRD lives in Notion: *PRD — Sakinah (Serenity v3)*.
+
+## v3.2 — The Deliverances (Nov 2026)
+Al-Ghazali's *Rubʿ al-Munjiyāt* (Iḥyā' Book 4, books 31–40) as one path through the app. See `docs/PRD-v3.2-deliverances.md`.
+- **/faith/deliverances**: a "This week's book" tile plus all 10 books (when → lens → practice), each linked to the tool that practises it. The summaries are composed and labelled that way.
+- **/faith/tawbah**: a 3-step Tawbah reset. Only the date and the good deed are saved; the slip text is never stored.
+- **/faith/mercies**: a Mercies journal for fear and hope, with "Show me one" for anxious moments.
+- **Reframe cards** show a "Deliverance" chip mapped from their tags.
+- Dexie v7 (additive): `tawbahLogs`, `mercies`. `check:citations` now covers `munjiyat.ts`.

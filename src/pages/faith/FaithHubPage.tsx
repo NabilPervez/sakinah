@@ -11,6 +11,8 @@ const SECTIONS: { label: string; rows: Row[] }[] = [
     { to: '/faith/camel', title: 'Tie your camel.', meta: '1 min', blurb: 'Turn a fear into prep steps, then hand the rest to Allah.' },
     { to: '/faith/dhikr', title: 'Dhikr.', meta: 'Counter', blurb: 'Tasbih counter with the core adhkar and the Names.' },
     { to: '/faith/duas', title: 'Du’a by need.', meta: '120 du’as', blurb: 'The gameplan du’as, plus a du’a for what you feel right now.' },
+    { to: '/faith/tawbah', title: 'Tawbah reset.', meta: '1 min', blurb: 'Name it, regret it toward Allah, follow it with good. Nothing saved but the deed.' },
+    { to: '/faith/mercies', title: 'Mercies journal.', meta: 'Hope', blurb: 'Times He came through — pull one up when dread runs ahead.' },
   ] },
   { label: 'Daily', rows: [
     { to: '/reflect/muhasabah', title: 'Muhasabah.', meta: '3 min', blurb: 'Morning intention, nightly review — al-Ghazali’s four stages.' },
@@ -19,6 +21,7 @@ const SECTIONS: { label: string; rows: Row[] }[] = [
     { to: '/faith/names', title: 'Names of Allah.', meta: '99', blurb: 'Five anchor Names for your struggles, and all 99.' },
   ] },
   { label: 'Understand the why', rows: [
+    { to: '/faith/deliverances', title: 'The Deliverances.', meta: '10 books', blurb: 'al-Ghazali’s Munjiyat — one book a week, each linked to a tool.' },
     { to: '/faith/shifts', title: 'Mindset shifts.', meta: '5', blurb: 'From → To, with the text behind each.' },
     { to: '/faith/study', title: 'Study.', meta: '6 lessons', blurb: 'Fear, tawakkul, qadr, muhasabah, presence, husn al-dhann.' },
     { to: '/faith/home', title: 'Akhlaq & routine.', meta: 'Home', blurb: 'Gentleness, marriage, and the prayer-anchored day.' },

@@ -109,6 +109,8 @@ export interface Fear { id?: number; text: string; prepSteps: { text: string; do
 export interface DhikrLog { id?: number; dhikrId: string; count: number; target: number; at: number; date: string }
 /** Reflect › Muhasabah: one row per day (al-Ghazali's four stages). */
 export interface MuhasabahDay { id?: number; date: string; intention: string; well: string; slip: string; release: string; createdAt: number }
+export interface TawbahLog { id?: number; date: string; at: number; deed: string }
+export interface Mercy { id?: number; text: string; createdAt: number }
 export interface QuranLog { id?: number; passageId: string; date: string }
 export interface WeeklySigns { id?: number; weekOf: string; scores: Record<string, number>; createdAt: number }
 
@@ -120,6 +122,8 @@ export interface CustomCard { id?: number; title: string; situation: string; act
 class SerenityDB extends Dexie {
   reframeUses!: Table<ReframeUse>;
   customCards!: Table<CustomCard>;
+  tawbahLogs!: Table<TawbahLog>;
+  mercies!: Table<Mercy>;
   fears!: Table<Fear>;
   dhikrLogs!: Table<DhikrLog>;
   muhasabah!: Table<MuhasabahDay>;
@@ -178,6 +182,11 @@ class SerenityDB extends Dexie {
     this.version(6).stores({
       reframeUses: '++id, at, date, cardId',
       customCards: '++id, createdAt',
+    });
+    // v7 — additive: Deliverances (Nabil, 2026-11-18). Tawbah stores the deed only, never the slip.
+    this.version(7).stores({
+      tawbahLogs: '++id, at, date',
+      mercies: '++id, createdAt',
     });
   }
 }
@@ -279,3 +288,10 @@ export const getAllReframeUses = () => db.reframeUses.orderBy('at').reverse().to
 export const getCustomCards = () => db.customCards.orderBy('createdAt').reverse().toArray();
 export const saveCustomCard = (c: CustomCard) => (c.id ? db.customCards.put(c) : db.customCards.add(c));
 export const deleteCustomCard = (id: number) => db.customCards.delete(id);
+
+// ── Helpers: Deliverances (v3.2) ───────────────────────
+export const addTawbahLog = (t: Omit<TawbahLog, 'id'>) => db.tawbahLogs.add(t);
+export const countTawbah = () => db.tawbahLogs.count();
+export const getMercies = () => db.mercies.orderBy('createdAt').reverse().toArray();
+export const addMercy = (text: string) => db.mercies.add({ text, createdAt: Date.now() });
+export const deleteMercy = (id: number) => db.mercies.delete(id);

@@ -24,6 +24,9 @@ const DhikrPage = lazy(() => import('./pages/faith/DhikrPage'));
 const DuasPage = lazy(() => import('./pages/faith/DuasPage'));
 const NamesPage = lazy(() => import('./pages/faith/NamesPage'));
 const MuhasabahPage = lazy(() => import('./pages/faith/MuhasabahPage'));
+const DeliverancesPage = lazy(() => import('./pages/faith/DeliverancesPage'));
+const TawbahPage = lazy(() => import('./pages/faith/TawbahPage'));
+const MerciesPage = lazy(() => import('./pages/faith/MerciesPage'));
 const SignsPage = lazy(() => import('./pages/faith/SignsPage'));
 const QuranPage = lazy(() => import('./pages/faith/FaithReadPages').then((m) => ({ default: m.QuranPage })));
 const ShiftsPage = lazy(() => import('./pages/faith/FaithReadPages').then((m) => ({ default: m.ShiftsPage })));
@@ -93,6 +96,9 @@ export default function App() {
           <Route path="/faith/shifts" element={<PageTransition><ShiftsPage /></PageTransition>} />
           <Route path="/faith/study" element={<PageTransition><StudyPage /></PageTransition>} />
           <Route path="/faith/listen" element={<PageTransition><ListenPage /></PageTransition>} />
+          <Route path="/faith/deliverances" element={<PageTransition><DeliverancesPage /></PageTransition>} />
+          <Route path="/faith/tawbah" element={<PageTransition><TawbahPage /></PageTransition>} />
+          <Route path="/faith/mercies" element={<PageTransition><MerciesPage /></PageTransition>} />
           <Route path="/faith/home" element={<PageTransition><HomePage /></PageTransition>} />
           <Route path="/reflect/muhasabah" element={<PageTransition><MuhasabahPage /></PageTransition>} />
           <Route path="/progress/signs" element={<PageTransition><SignsPage /></PageTransition>} />
