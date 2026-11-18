@@ -5,6 +5,7 @@ import {
   BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from 'recharts';
 import TopBar from '../components/TopBar';
+import CardStats from '../components/cards/CardStats';
 import {
   db, type CheckIn, type ChecklistDay, type PracticeSession, type Reframe, type EffortNight, type PillarWeek,
   type DistractionReset, type Judgment, type QuickReframe, type GratitudeNight,
@@ -183,6 +184,7 @@ export default function AnalyticsPage() {
             <div key={l as string} className="progress-stat"><span className="progress-stat-value">{n}</span><span className="progress-stat-label">{l}</span></div>
           ))}
         </section>
+        <CardStats days={range} />
 
         {/* ── Heatmap ── */}
         <Card icon="calendar_month" title="Consistency" sub="Last 5 weeks · darker = more practices that day">

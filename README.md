@@ -11,10 +11,10 @@ Sakinah (Serenity v3) is a local-first PWA for anxiety, with faith woven through
 | **Today** | Routine checklist, plus today's intention (muraqabah), open prep steps from your fears, the anchor Name, and today's Qur'an passage |
 | **Practice** | Non-judgment minute, body focus, Back to it (5-min refocus), box breathing, each with its niyyah |
 | **Faith** | Tie your camel (fear → prep → tawakkul), dhikr counter, du'a by need, the 99 Names, Qur'an plan, mindset shifts, study, akhlaq & routine |
-| **Reflect** | Muhasabah (al-Ghazali's 4 stages), gratitude, reframes (husn al-dhann), effort ledger, Friday pillars |
+| **Reflect** | Reframe cards (situation → action, text, reframe, reward; log heaviness before/after, pin to Today, write your own), muhasabah (al-Ghazali's 4 stages), gratitude, reframes (husn al-dhann), effort ledger, Friday pillars |
 | **Progress** | Adherence vs. stress, plus weekly 6–8 week signs and faith stats |
 
-SOS (top bar) is one tap from anywhere and includes Du'a al-Karb and Tie your camel.
+SOS (top bar) is one tap from anywhere and includes Du'a al-Karb, Tie your camel, and "Is it one of these thoughts?" to jump to a reframe card. Between 9 pm and 7 am, Today shows the sleepless-nights card first; the PWA shortcut "Night card" opens it directly. A weekday 8:30 reminder opens the work card.
 
 ## Citations
 
@@ -32,7 +32,7 @@ The app lives at a new address, so its local data starts empty. In Serenity v2, 
 
 ## Stack
 
-React 19 + Vite, Dexie (IndexedDB, schema v5), Zustand, Recharts, GSAP + @gsap/react, vite-plugin-pwa. Design: Quiet Precision (Cisco), light mode, lapis accent, Outfit + Noto Naskh Arabic.
+React 19 + Vite, Dexie (IndexedDB, schema v6), Zustand, Recharts, GSAP + @gsap/react, vite-plugin-pwa. Design: Quiet Precision (Cisco), light mode, lapis accent, Outfit + Noto Naskh Arabic.
 
 ```bash
 npm install

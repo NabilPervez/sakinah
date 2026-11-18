@@ -30,6 +30,7 @@ export default defineConfig({
         shortcuts: [
           { name: 'Back to it', short_name: 'Back to it', description: 'Start a 5-minute distraction reset', url: '/practice?reset=1' },
           { name: 'SOS', short_name: 'SOS', url: '/sos' },
+          { name: 'Up in the night', short_name: 'Night card', description: 'Sleepless night with a sick child — set your intention', url: '/reflect/cards/sleepless-nights' },
           { name: 'Tie your camel', short_name: 'Tie your camel', description: 'Turn a fear into prep + tawakkul', url: '/faith/camel' },
           { name: 'Dhikr', short_name: 'Dhikr', url: '/faith/dhikr' },
           { name: 'Reminders', short_name: 'Reminders', url: '/reminders' },

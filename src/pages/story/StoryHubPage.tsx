@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import TopBar from '../../components/TopBar';
 import '../../present.css';
+import '../../cards.css';
+import { ThoughtMatch } from '../../components/cards/CardBits';
+import { useCards } from '../../hooks/useCards';
+import { useCardStore } from '../../store/useCardStore';
 
 interface Row { to: string; title: string; meta: string; blurb: string }
 
@@ -10,6 +14,7 @@ const SECTIONS: { label: string; note?: string; rows: Row[] }[] = [
   {
     label: 'Anytime',
     rows: [
+      { to: '/reflect/cards', title: 'Reframe cards.', meta: '20 sec', blurb: 'Ready-made reframes for the moments that keep coming back.' },
       { to: '/reflect/quick', title: 'Reframe it.', meta: '1 min', blurb: 'Turn what happened into the version that helps.' },
       { to: '/reflect/reframe', title: 'Guided reframe.', meta: '5 min', blurb: 'Rewrite one harsh thought into a merciful one.' },
     ],
@@ -32,6 +37,8 @@ const SECTIONS: { label: string; note?: string; rows: Row[] }[] = [
 ];
 
 export default function StoryHubPage() {
+  const { cards } = useCards();
+  const { hidden } = useCardStore();
   return (
     <>
       <TopBar title="Reflect" icon="auto_stories" />
@@ -44,6 +51,7 @@ export default function StoryHubPage() {
           <li>I don't need to be perfect — Allah is in control, I am not.</li>
           <li>I control my effort, my emotions and my outlook.</li>
         </ul>
+        <ThoughtMatch cards={cards.filter((c) => !c.custom && !hidden.includes(c.id))} />
         {SECTIONS.map((s, si) => (
           <section key={s.label} className="reflect-group">
             <h2 className="reflect-group-label">

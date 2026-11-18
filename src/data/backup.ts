@@ -1,7 +1,7 @@
 import { db } from './db';
 
 /** localStorage keys owned by the app (zustand persist stores). */
-const LS_KEYS = ['serenity-v2-preferences', 'serenity-v2-reminders'];
+const LS_KEYS = ['serenity-v2-preferences', 'serenity-v2-reminders', 'sakinah-cards'];
 const FORMAT = 'serenity-v2-backup'; // kept so v2 exports import into Sakinah (v3)
 
 export interface Backup {

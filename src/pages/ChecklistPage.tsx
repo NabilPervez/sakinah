@@ -10,6 +10,8 @@ import { getChecklistDay, saveChecklistDay } from '../data/db';
 import Modal from '../components/Modal';
 import EmotionalCheckIn from '../components/EmotionalCheckIn';
 import '../present.css';
+import '../cards.css';
+import TodayCards from '../components/cards/TodayCards';
 
 function getGreeting(): string {
   const hour = new Date().getHours();
@@ -111,6 +113,7 @@ export default function ChecklistPage() {
           </div>
         </header>
 
+        <TodayCards />
         <TodayFaith />
 
         {nextUp && (

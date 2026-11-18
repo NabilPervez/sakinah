@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom';
 import TopBar from '../components/TopBar';
 import { EMERGENCY_TOOLS } from '../data/emergencyTools';
 import '../present.css';
+import '../cards.css';
+import { ThoughtMatch } from '../components/cards/CardBits';
+import { useCards } from '../hooks/useCards';
+import { useCardStore } from '../store/useCardStore';
 
 /**
  * SOS — Emergency Reset, one tap from every screen (top bar).
  * Nabil, 2026-11-03: moved out of Tools so a panic moment never needs navigation.
  */
 export default function SosPage() {
+  const { cards } = useCards();
+  const { hidden } = useCardStore();
   const [open, setOpen] = useState<string | null>(EMERGENCY_TOOLS[0]?.id ?? null);
 
   return (
@@ -30,6 +36,8 @@ export default function SosPage() {
             </Link>
           </div>
         </header>
+
+        <ThoughtMatch cards={cards.filter((c) => !hidden.includes(c.id))} title="Is it one of these thoughts?" />
 
         <section className="pr-spine">
           {EMERGENCY_TOOLS.map((tool, i) => (

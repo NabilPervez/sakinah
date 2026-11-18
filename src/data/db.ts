@@ -112,7 +112,14 @@ export interface MuhasabahDay { id?: number; date: string; intention: string; we
 export interface QuranLog { id?: number; passageId: string; date: string }
 export interface WeeklySigns { id?: number; weekOf: string; scores: Record<string, number>; createdAt: number }
 
+/** Reflect › Reframe Cards: one use of a card (PRD v3.1). */
+export interface ReframeUse { id?: number; cardId: string; at: number; date: string; before?: number; after?: number }
+/** Reflect › a card the user wrote. */
+export interface CustomCard { id?: number; title: string; situation: string; action: string; negative: string; positive: string; reward: string; textNote: string; createdAt: number }
+
 class SerenityDB extends Dexie {
+  reframeUses!: Table<ReframeUse>;
+  customCards!: Table<CustomCard>;
   fears!: Table<Fear>;
   dhikrLogs!: Table<DhikrLog>;
   muhasabah!: Table<MuhasabahDay>;
@@ -166,6 +173,11 @@ class SerenityDB extends Dexie {
       muhasabah: '++id, &date',
       quranLogs: '++id, date, passageId',
       weeklySigns: '++id, &weekOf',
+    });
+    // v6 — additive: Reframe Cards (Nabil, 2026-11-18).
+    this.version(6).stores({
+      reframeUses: '++id, at, date, cardId',
+      customCards: '++id, createdAt',
     });
   }
 }
@@ -260,3 +272,10 @@ export async function saveWeeklySigns(w: Omit<WeeklySigns, 'id'>): Promise<void>
   const ex = await getWeeklySigns(w.weekOf);
   if (ex?.id) await db.weeklySigns.update(ex.id, w); else await db.weeklySigns.add(w);
 }
+
+// ── Helpers: Reframe Cards ──────────────────────────────
+export const addReframeUse = (u: Omit<ReframeUse, 'id'>) => db.reframeUses.add(u);
+export const getAllReframeUses = () => db.reframeUses.orderBy('at').reverse().toArray();
+export const getCustomCards = () => db.customCards.orderBy('createdAt').reverse().toArray();
+export const saveCustomCard = (c: CustomCard) => (c.id ? db.customCards.put(c) : db.customCards.add(c));
+export const deleteCustomCard = (id: number) => db.customCards.delete(id);

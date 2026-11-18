@@ -4,7 +4,7 @@
 |---|---|
 | **Owner** | Nabil Pervez |
 | **Date** | 2026-11-18 |
-| **Status** | Draft |
+| **Status** | Built 2026-11-18 |
 | **Repo** | github.com/NabilPervez/sakinah |
 | **Stack** | React 19 + Vite, Dexie (schema v5 → v6), Zustand, GSAP — unchanged |
 | **Design** | Quiet Precision (web-design-cisco), light mode, lapis accent |
@@ -117,7 +117,11 @@ Content rules:
 | Feels preachy in a hard moment | Action first, short lines, no guilt language; user can hide any card |
 | Dexie v6 migration loses data | Additive table only; test import of a v5 backup before deploy |
 
-## 10. Open questions
+## 10. Decisions (2026-11-18)
+
+1. Night card: shows first on Today 9 pm–7 am, plus a PWA shortcut. 2. Reminders: yes — weekday 08:30 work card (on), 12:30 expect-good (off by default). 3. No JSON card import for now.
+
+## 10b. Original open questions
 
 1. Should Card 3 get a night-mode shortcut (e.g. home-screen shortcut / PWA shortcut straight to the card)? Proposed: yes, PWA `shortcuts` entry — low cost.
 2. Do you want gentle reminders (e.g. "set your intention before work") in a later release?

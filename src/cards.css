@@ -1,0 +1,31 @@
+/* Reframe Cards — Quiet Precision: hairlines, closed scale, lapis only on CTA + reframe (PRD v3.1). */
+.rc-today, .rc-list { display: flex; flex-direction: column; border-top: 1px solid var(--hairline); margin: 16px 0; }
+.rc-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--hairline); text-decoration: none; color: var(--ink); min-height: 48px; }
+.rc-row-t { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.rc-row-t strong { font-size: 18px; font-weight: 500; }
+.rc-kicker { font-size: 13px; color: var(--accent-600); letter-spacing: .02em; }
+.rc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+.rc-tag { font: inherit; font-size: 13px; padding: 6px 12px; border: 1px solid var(--hairline); border-radius: 999px; background: none; color: var(--ink-2); min-height: 32px; }
+.rc-tag.on { border-color: var(--accent-600); color: var(--accent-600); }
+.rc-detail .pr-h1 { font-size: 32px; }
+.rc-sec { padding: 20px 0; border-top: 1px solid var(--hairline); }
+.rc-label { font-size: 13px; font-weight: 500; color: var(--ink-2); margin: 0 0 8px; letter-spacing: .02em; }
+.rc-body { font-size: 16px; line-height: 1.55; color: var(--ink); margin: 0 0 8px; }
+.rc-src { font-size: 13px; color: var(--ink-2); }
+.rc-neg { font-size: 16px; color: var(--ink); margin: 0 0 12px; transition: opacity .3s, color .3s; }
+.rc-neg.gone { opacity: .4; text-decoration: line-through; }
+.rc-pos { font-size: 18px; line-height: 1.5; color: var(--accent-800); margin: 0 0 12px; }
+.rc-chip { display: inline-block; font-size: 13px; padding: 6px 12px; border: 1px solid var(--accent-300); border-radius: 999px; color: var(--accent-800); text-decoration: none; }
+.rc-commit { position: sticky; bottom: 0; background: var(--color-background); padding: 16px 0 calc(16px + env(safe-area-inset-bottom)); border-top: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 12px; }
+.rc-cta { width: 100%; min-height: 52px; justify-content: center; }
+.rc-scale { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-2); }
+.rc-scale span { flex: 1; }
+.rc-scale button { font: inherit; width: 40px; height: 40px; border: 1px solid var(--hairline); border-radius: 50%; background: none; color: var(--ink); }
+.rc-scale button.on { border-color: var(--accent-600); color: var(--accent-600); }
+.rc-tools { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 0 32px; }
+.rc-match { margin: 24px 0; }
+.rc-match ul { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--hairline); }
+.rc-match li a { display: block; padding: 14px 0; border-bottom: 1px solid var(--hairline); color: var(--ink); text-decoration: none; font-size: 16px; }
+.rc-form { display: flex; flex-direction: column; gap: 12px; padding: 16px 0; border-top: 1px solid var(--hairline); }
+.rc-form label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-2); }
+.rc-form input, .rc-form textarea { font: inherit; font-size: 16px; padding: 10px 12px; border: 1px solid var(--hairline); border-radius: 8px; color: var(--ink); background: none; width: 100%; box-sizing: border-box; }

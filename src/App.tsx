@@ -14,6 +14,8 @@ import PracticePage from './pages/present/PracticePage';
 import QuickReframePage from './pages/story/QuickReframePage';
 import GratitudePage from './pages/story/GratitudePage';
 import SettingsPage from './pages/SettingsPage';
+import CardsPage from './pages/story/CardsPage';
+import CardDetailPage from './pages/story/CardDetailPage';
 import { lazy, Suspense } from 'react';
 // Faith pages load on demand (Nabil, 2026-11-15: keeps first paint light; 99 Names + 116 du'as are heavy).
 const FaithHubPage = lazy(() => import('./pages/faith/FaithHubPage'));
@@ -77,6 +79,8 @@ export default function App() {
           <Route path="/reflect" element={<PageTransition><StoryHubPage /></PageTransition>} />
           <Route path="/reflect/quick" element={<PageTransition><QuickReframePage /></PageTransition>} />
           <Route path="/reflect/reframe" element={<PageTransition><ReframePage /></PageTransition>} />
+          <Route path="/reflect/cards" element={<PageTransition><CardsPage /></PageTransition>} />
+          <Route path="/reflect/cards/:id" element={<PageTransition><CardDetailPage /></PageTransition>} />
           <Route path="/reflect/gratitude" element={<PageTransition><GratitudePage /></PageTransition>} />
           <Route path="/reflect/ledger" element={<PageTransition><LedgerPage /></PageTransition>} />
           <Route path="/reflect/pillars" element={<PageTransition><PillarsPage /></PageTransition>} />
